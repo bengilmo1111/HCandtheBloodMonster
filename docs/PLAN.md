@@ -16,7 +16,7 @@ Delivered:
 
 ### 1. Expand the world map
 - Status: in progress. Five new optional scenes have been added: cloak bay, playground, tuck shop, music room, and prop room. Each is reached as a 4th choice from corridor / courts / office / library / hall respectively, and each adds a unique clue badge to the notebook on success. The main winning route (start -> toilets -> garden -> hall -> ending) is unchanged, so a younger player can still finish without visiting the side scenes.
-- Add a simple map screen (still pending — `MAP_TEXT` is text-only for now).
+- Map screen: done. `MAP` now renders a multi-line ASCII tree of the school via the exported `buildMap(currentSceneId, visited)` function. The current location is highlighted with `[*]` and visited rooms with `[.]`. Below the tree the game prints "You are at: ...  Visited: N of M places." and a one-line legend. Rendered as a `<pre class="story-pre">` block in the story log.
 - Hidden curriculum (do NOT surface this to players): each puzzle scene quietly drills a primary-school maths skill while staying in-world.
   - `cloakbay` — multiplication + subtraction (3 rows × 7 hooks − 4 missing = 17).
   - `playground` — number patterns / skip-counting (2, 4, 6, ?, 10, 12 → 8).

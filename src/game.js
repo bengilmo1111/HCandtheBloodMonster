@@ -393,7 +393,31 @@ export const scenes = {
   }
 };
 
-export const MAP_TEXT = 'Map: gate -> toilets / office / courts. Office -> corridor, Room 10, tuck shop. Corridor -> library, hall, cloak bay. Courts -> hall, garden, playground. Library -> music room. Hall -> prop room (and the ending if you have the monster head). Garden holds Baxter\'s clue.';
+export const MAP_TEXT = '[*] = you are here.  [.] = visited.  (P) = thinking puzzle.  HALL is also reachable from library, garden, and Room 10.  ENDING is locked until you have the monster head.';
+
+export function buildMap(currentSceneId, visited = []) {
+  const at = (id) => currentSceneId === id ? '*' : (visited.includes(id) ? '.' : ' ');
+  return [
+    'HUTT CENTRAL SCHOOL MAP',
+    '',
+    `[${at('start')}] GATE`,
+    ' |',
+    ` +-- [${at('toilets')}] toilets --- [${at('garden')}] garden`,
+    ` |     +-- [${at('pipe')}] pipe`,
+    ' |',
+    ` +-- [${at('office')}] office`,
+    ` |     +-- [${at('room10')}] Room 10`,
+    ` |     +-- [${at('tuckshop')}] tuck shop (P)`,
+    ` |     +-- [${at('corridor')}] corridor`,
+    ` |           +-- [${at('library')}] library --- [${at('musicroom')}] music (P)`,
+    ` |           +-- [${at('cloakbay')}] cloak bay (P)`,
+    ' |',
+    ` +-- [${at('courts')}] courts`,
+    `       +-- [${at('playground')}] playground (P)`,
+    `       +-- [${at('hall')}] HALL --- [${at('ending')}] ending`,
+    `              +-- [${at('propRoom')}] prop room (P)`
+  ].join('\n');
+}
 
 export const JOKES = [
   'Why did the school ghost get sent to the office? Bad spell-ing.',
@@ -564,6 +588,14 @@ function initGame() {
     paragraph.scrollIntoView({ block: 'nearest' });
   }
 
+  function writePre(text) {
+    const block = document.createElement('pre');
+    block.className = 'story-pre';
+    block.textContent = text;
+    storyLog.append(block);
+    block.scrollIntoView({ block: 'nearest' });
+  }
+
   function autoSave() {
     try {
       localStorage.setItem(SAVE_KEY, JSON.stringify(state));
@@ -642,6 +674,9 @@ function initGame() {
     }
 
     if (command === 'map') {
+      writePre(buildMap(state.sceneId, state.visited));
+      const total = Object.keys(scenes).length;
+      writeMessage(`You are at: ${scene.title}.  Visited: ${state.visited.length} of ${total} places.`);
       writeMessage(MAP_TEXT);
       return;
     }
