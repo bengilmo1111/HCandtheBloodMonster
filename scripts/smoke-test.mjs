@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { ART, SAVE_KEY, scenes } from '../src/game.js';
+import { ART, SAVE_KEY, scenes, buildMap } from '../src/game.js';
 
 const [html, game, styles] = await Promise.all([
   readFile('index.html', 'utf8'),
@@ -49,6 +49,18 @@ if (!game.includes('beetroot') || !game.includes('washable paint')) {
 if (!game.includes('pat baxter')) failures.push('Baxter pat command (kid-friendly) is missing.');
 if (!game.includes('Welcome, detective')) failures.push('First-time welcome message is missing.');
 if (!game.includes("'joke'")) failures.push('JOKE command is missing.');
+if (typeof buildMap !== 'function') failures.push('buildMap function is missing.');
+
+const sampleMap = buildMap('garden', ['start', 'toilets', 'garden']);
+if (!sampleMap.includes('HUTT CENTRAL SCHOOL MAP')) failures.push('buildMap output is missing the title.');
+if (!sampleMap.includes('[*] garden')) failures.push('buildMap should mark the current scene with [*].');
+const visitedMatches = sampleMap.match(/\[\.\]/g) ?? [];
+if (visitedMatches.length < 2) failures.push('buildMap should mark visited scenes with [.].');
+for (const id of Object.keys(scenes)) {
+  const mapStr = buildMap(id, []);
+  const starCount = (mapStr.match(/\[\*\]/g) ?? []).length;
+  if (starCount !== 1) failures.push(`buildMap(${id}) should produce exactly one [*] marker, got ${starCount}.`);
+}
 
 const puzzleScenes = ['cloakbay', 'playground', 'tuckshop', 'musicroom', 'propRoom'];
 for (const id of puzzleScenes) {

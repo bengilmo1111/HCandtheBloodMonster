@@ -134,6 +134,17 @@ figcaption {
   color: var(--muted);
 }
 
+.story-pre {
+  margin: 0.75rem 0;
+  font-family: inherit;
+  font-size: clamp(0.7rem, 2.4vw, 0.95rem);
+  line-height: 1.2;
+  white-space: pre;
+  overflow-x: auto;
+  color: var(--ink);
+  text-shadow: 0 0 0.35rem rgba(255, 255, 255, 0.35);
+}
+
 .command-form {
   border-top: 1px dashed var(--line);
   margin-top: 1rem;
