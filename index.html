@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050505" />
+    <meta
+      name="description"
+      content="HC and the Blood Monster: a kid-friendly retro text adventure at Hutt Central School."
+    />
+    <title>HC and the Blood Monster</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main id="app" class="crt-shell" aria-live="polite">
+      <section class="top-panel" aria-label="Game header">
+        <div>
+          <p class="kicker">Hutt Central School Mystery Club presents</p>
+          <h1>HC and the Blood Monster</h1>
+        </div>
+        <div class="status-lights" aria-label="Game status">
+          <span id="save-status">READY</span>
+        </div>
+      </section>
+
+      <section class="screen-grid">
+        <figure class="picture-frame" aria-label="Current scene picture">
+          <pre id="scene-art" class="scene-art"></pre>
+          <figcaption id="scene-caption"></figcaption>
+        </figure>
+
+        <section class="terminal" aria-label="Story terminal">
+          <div id="story-log" class="story-log"></div>
+          <form id="command-form" class="command-form" autocomplete="off">
+            <label for="command-input">Type a number, a command, or tap a choice. Try MAP or HINT if you get stuck.</label>
+            <div class="prompt-row">
+              <span aria-hidden="true">&gt;</span>
+              <input id="command-input" inputmode="text" placeholder="try: map, hint, go hall" />
+              <button type="submit">ENTER</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <nav id="choices" class="choices" aria-label="Choices"></nav>
+
+      <section class="inventory-panel" aria-label="Notebook and inventory">
+        <h2>Mystery Club Notebook</h2>
+        <ul id="inventory-list"></ul>
+      </section>
+    </main>
+    <script type="module" src="src/game.js"></script>
+  </body>
+</html>
