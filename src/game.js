@@ -2,16 +2,16 @@ export const SAVE_KEY = 'hc-blood-monster-save-v2';
 export const LEGACY_SAVE_KEY = 'hc-blood-monster-save-v1';
 
 export const STAFF = {
-  michael: 'Mr Michael Gendall, the principal',
-  chrissy: 'Ms Chrissy Laiman, the deputy principal',
-  andrea: 'Ms Andrea Rogers, the assistant principal',
-  jo: 'Jo Nash in the office',
-  penny: 'Penny Holotau in the office',
-  craig: 'Craig Webb, the caretaker',
-  kate: 'Kate Shirley from Room 13',
-  julia: 'Julia Dal Vesco from Room 14',
-  zoeTeacher: 'Zoe Thompson-Edgeler from Room 10',
-  andreaSinclair: 'Andrea Sinclair from Room 12'
+  michael: 'Mr Gendall',
+  chrissy: 'Chrissy',
+  andrea: 'Andrea',
+  jo: 'Jo',
+  penny: 'Penny',
+  craig: 'Mr Webb',
+  kate: 'Kate',
+  julia: 'Julia',
+  zoeTeacher: 'Zoe',
+  andreaSinclair: 'Andrea'
 };
 
 export const ART = {
@@ -86,7 +86,44 @@ export const ART = {
       --  \o/  --
           /|\
           / \
-   The monster waves hello.`
+   The monster waves hello.`,
+  cloakbay: String.raw`
+       CLOAK BAY
+   ___________________
+  | u u u u u u u    |
+  | u . . u u u u    |
+  | u u u . u u u    |
+  |__hooks_&_coats___|
+       drip... drip...`,
+  playground: String.raw`
+        PLAYGROUND
+   _______________________
+  | 2 | 4 | 6 | ? | 10|12 |
+  |___|___|___|___|___|___|
+        chalk hopscotch
+   wet rain washed one off`,
+  tuckshop: String.raw`
+        TUCK SHOP
+   ___________________
+  |  $3   $3   $3    |
+  |  cookie tray     |
+  |  snack hatch     |
+  |__$12 in tin______|`,
+  musicroom: String.raw`
+        MUSIC ROOM
+   ___________________
+  |  drum   ///3     |
+  |  cymbal ////4    |
+  |   boom... CLINK  |
+  |__beat: 1 2 3 4...|`,
+  propRoom: String.raw`
+        PROP ROOM
+   ___________________
+  |    .--12--.      |
+  |   9    |    3    |
+  |    '--6--'       |
+  |  felt fangs box  |
+  |__locked combo____|`
 };
 
 export const scenes = {
@@ -135,7 +172,8 @@ export const scenes = {
     choices: [
       { label: 'Borrow the torch and go to the toilets', to: 'toilets', add: 'torch', verbs: ['take torch', 'borrow torch', 'go toilets'] },
       { label: 'Check the office corridor map', to: 'corridor', add: 'hall note', verbs: ['go corridor', 'check map', 'read note'] },
-      { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] }
+      { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] },
+      { label: 'Stop at the tuck shop window for snacks', to: 'tuckshop', verbs: ['go tuck', 'tuck shop', 'snacks', 'buy snacks'] }
     ]
   },
   courts: {
@@ -151,7 +189,8 @@ export const scenes = {
     choices: [
       { label: 'Follow the curtain cord to the hall', to: 'hall', add: 'glitter trail', verbs: ['follow cord', 'go hall'] },
       { label: 'Cut across to the quiet garden', to: 'garden', verbs: ['go garden'] },
-      { label: 'Return to the toilets', to: 'toilets', verbs: ['go toilets'] }
+      { label: 'Return to the toilets', to: 'toilets', verbs: ['go toilets'] },
+      { label: 'Peek at the playground hopscotch', to: 'playground', verbs: ['go playground', 'hopscotch', 'check hopscotch'] }
     ]
   },
   corridor: {
@@ -167,7 +206,8 @@ export const scenes = {
     choices: [
       { label: 'Follow glitter to the library', to: 'library', add: 'school map', verbs: ['go library', 'follow glitter'] },
       { label: 'Follow glitter to the hall', to: 'hall', add: 'school map', verbs: ['go hall'] },
-      { label: 'Go back to the office', to: 'office', verbs: ['go office'] }
+      { label: 'Go back to the office', to: 'office', verbs: ['go office'] },
+      { label: 'Duck into the cloak bay', to: 'cloakbay', verbs: ['go cloak', 'cloak bay', 'cloakbay', 'check coats'] }
     ]
   },
   library: {
@@ -183,7 +223,8 @@ export const scenes = {
     choices: [
       { label: 'Take the fang bookmark to the hall', to: 'hall', add: 'fang bookmark', verbs: ['take bookmark', 'go hall'] },
       { label: 'Compare clues at the toilets', to: 'toilets', verbs: ['go toilets'] },
-      { label: 'Search outside in the quiet garden', to: 'garden', verbs: ['go garden'] }
+      { label: 'Search outside in the quiet garden', to: 'garden', verbs: ['go garden'] },
+      { label: 'Slip into the music room next door', to: 'musicroom', verbs: ['go music', 'music room', 'musicroom'] }
     ]
   },
   room10: {
@@ -246,7 +287,8 @@ export const scenes = {
     choices: [
       { label: 'Say hello to whatever is backstage', to: 'ending', requires: ['monster head'], verbs: ['say hello', 'hello monster', 'go backstage'] },
       { label: 'Gather more proof from the garden', to: 'garden', verbs: ['go garden'] },
-      { label: 'Look for written proof in the library', to: 'library', verbs: ['go library'] }
+      { label: 'Look for written proof in the library', to: 'library', verbs: ['go library'] },
+      { label: 'Sneak into the prop room', to: 'propRoom', verbs: ['go prop', 'prop room', 'check props', 'open props'] }
     ]
   },
   ending: {
@@ -263,10 +305,103 @@ export const scenes = {
       { label: 'Play again with different choices', to: 'start', reset: true, verbs: ['restart', 'play again'] },
       { label: 'Review the notebook', command: 'bag', verbs: ['bag', 'notebook'] }
     ]
+  },
+  cloakbay: {
+    art: 'cloakbay',
+    caption: 'Hooks, raincoats, and one rogue gumboot.',
+    title: 'The Mystery of the Missing Jumpers',
+    hint: 'Three rows of seven hooks, four jumpers gone. Count what is left.',
+    text: [
+      'The cloak bay has three tidy rows of seven hooks. Most are dripping with raincoats and woollen jumpers.',
+      'Wilfred says four jumpers are missing — probably in the lost-property pile. Sam needs the right count for the lost-property log; Penny will not issue more keys until the numbers match.',
+      '"How many jumpers are still on the hooks?" Sam asks, pencil hovering.'
+    ],
+    choices: [
+      { label: 'Write 17 in the log', to: 'corridor', add: 'jumper count', verbs: ['17', 'seventeen', 'write 17'] },
+      { label: 'Write 14 in the log', feedback: 'Sam frowns. "Three rows of seven is bigger than fourteen. Try again."', verbs: ['14', 'fourteen', 'write 14'] },
+      { label: 'Write 21 in the log', feedback: 'Sam taps the pencil. "Twenty-one is every hook full. Four jumpers are missing — try again."', verbs: ['21', 'twenty one', 'twenty-one', 'write 21'] },
+      { label: 'Slip back to the corridor', to: 'corridor', verbs: ['go corridor', 'back', 'leave'] }
+    ]
+  },
+  playground: {
+    art: 'playground',
+    caption: 'Wet chalk, painted hopscotch, and a missing square.',
+    title: 'The Washed-Out Hopscotch',
+    hint: 'Each square jumps up by 2. Only one number washed away. Fill the gap.',
+    text: [
+      'Yesterday\'s rain has soaked the hopscotch. The numbers along the squares read: 2, 4, 6, ?, 10, 12.',
+      'Jessie thinks the missing number could be a clue. Nina says detectives notice patterns first.',
+      'Beneath the squares, someone has scratched: SHOUT THE MISSING NUMBER TO OPEN THE FORT.'
+    ],
+    choices: [
+      { label: 'Shout 8', to: 'courts', add: 'hopscotch pattern', verbs: ['8', 'eight', 'shout 8'] },
+      { label: 'Shout 7', feedback: 'The fort hatch stays shut. Nina whispers: "We are counting in twos, not ones."', verbs: ['7', 'seven', 'shout 7'] },
+      { label: 'Shout 9', feedback: 'No click. Casper shrugs: "Nine is odd — the pattern only uses even numbers."', verbs: ['9', 'nine', 'shout 9'] },
+      { label: 'Walk back to the courts', to: 'courts', verbs: ['go courts', 'back', 'leave'] }
+    ]
+  },
+  tuckshop: {
+    art: 'tuckshop',
+    caption: 'A foggy serving hatch and a row of price labels.',
+    title: 'The Tuck Shop Maths',
+    hint: 'Twelve dollars, three-dollar cookies, eight hungry detectives. Buy enough for everyone to share half.',
+    text: [
+      'Ben tips out the snack money: $12. Zoe points at the price label — Mystery Cookies are $3 each.',
+      'There are eight detectives in the club today. Everyone needs a fair share before the assembly bell.',
+      '"How many cookies should we buy so each of us gets exactly half a cookie?" Zoe asks.'
+    ],
+    choices: [
+      { label: 'Buy 4 cookies', to: 'office', add: 'shared cookies', verbs: ['4', 'four', 'buy 4', 'buy four'] },
+      { label: 'Buy 3 cookies', feedback: 'Six halves only feeds six. Two friends miss out. Try again.', verbs: ['3', 'three', 'buy 3'] },
+      { label: 'Buy 5 cookies', feedback: 'Five cookies cost $15 — that is more than the $12 in the tin. Try again.', verbs: ['5', 'five', 'buy 5'] },
+      { label: 'Skip snacks for now', to: 'office', verbs: ['skip', 'go office', 'back'] }
+    ]
+  },
+  musicroom: {
+    art: 'musicroom',
+    caption: 'Drumsticks, triangles, and one curtain that should not be there.',
+    title: 'Sound Check',
+    hint: 'The drum hits every 3 beats. The cymbal hits every 4. Find the first beat where they crash together.',
+    text: [
+      'Behind a half-pulled curtain, two stage cues thump in time. The drum thuds every 3 beats. The cymbal CLINKS every 4.',
+      '"Knock on the beat they both hit, and the prop-room door pops open," Guaranjot whispers, reading a sticky note.',
+      'Henry counts under his breath. Casper holds the pencil ready.'
+    ],
+    choices: [
+      { label: 'Knock on beat 12', to: 'library', add: 'rhythm key', verbs: ['12', 'twelve', 'knock 12'] },
+      { label: 'Knock on beat 7', feedback: 'Only the drum hits on 7. Look for a beat that is in BOTH the three-times table and the four-times table.', verbs: ['7', 'seven', 'knock 7'] },
+      { label: 'Knock on beat 10', feedback: 'Ten is in neither table. Try a number that is a multiple of 3 AND a multiple of 4.', verbs: ['10', 'ten', 'knock 10'] },
+      { label: 'Tip-toe back to the library', to: 'library', verbs: ['go library', 'back', 'leave'] }
+    ]
+  },
+  propRoom: {
+    art: 'propRoom',
+    caption: 'Felt fangs, glitter, and a wall clock with both hands frozen.',
+    title: 'The Backstage Clock',
+    hint: 'Big hand on 9 means 45 minutes past. Small hand between 2 and 3 means it is in the 2 o\'clock hour.',
+    text: [
+      'The prop-room clock has stopped. A note in Andrea\'s handwriting reads: REHEARSAL STARTS WHEN THE BIG HAND IS ON 9 AND THE SMALL HAND IS BETWEEN 2 AND 3.',
+      'A combination lock under the puppet box waits for the time as four digits, no colon.',
+      'Casper says, "Big hand on nine? That\'s forty-something past." Henry nods.'
+    ],
+    choices: [
+      { label: 'Dial 0245 (2:45)', to: 'hall', add: 'rehearsal time', verbs: ['245', '2:45', '0245', 'dial 245', 'two forty five'] },
+      { label: 'Dial 0900 (9:00)', feedback: 'That would be nine o\'clock. The big hand on 9 means 45 minutes PAST, not the hour.', verbs: ['900', '9:00', '0900', 'dial 900'] },
+      { label: 'Dial 0215 (2:15)', feedback: 'Quarter past two would put the big hand on 3. Look at the bottom of the clock face — beyond the 6 is the 9.', verbs: ['215', '2:15', '0215', 'dial 215'] },
+      { label: 'Slip back to the hall', to: 'hall', verbs: ['go hall', 'back', 'leave'] }
+    ]
   }
 };
 
-export const MAP_TEXT = 'Map: gate -> toilets, office, courts. Office -> corridor, Room 10. Corridor -> library or hall. Garden holds Baxter’s clue. Hall needs the monster head.';
+export const MAP_TEXT = 'Map: gate -> toilets / office / courts. Office -> corridor, Room 10, tuck shop. Corridor -> library, hall, cloak bay. Courts -> hall, garden, playground. Library -> music room. Hall -> prop room (and the ending if you have the monster head). Garden holds Baxter\'s clue.';
+
+export const JOKES = [
+  'Why did the school ghost get sent to the office? Bad spell-ing.',
+  'What do you call a dog who solves mysteries? Sherlock Bones. (Baxter is offended.)',
+  'How do you make a tissue dance? Put a little boogie in it. (Sam laughs anyway.)',
+  'What is a monster\'s favourite school subject? Hisss-tory.',
+  'Why did the maths book look sad? It had too many problems.'
+];
 
 export function createInitialState() {
   return {
@@ -280,17 +415,24 @@ export function createInitialState() {
 
 export function getChoiceByCommand(scene, command) {
   const cleaned = command.trim().toLowerCase();
-  const number = Number.parseInt(cleaned, 10);
 
+  const exactIndex = scene.choices.findIndex((choice) =>
+    choice.verbs?.some((verb) => cleaned === verb)
+  );
+  if (exactIndex !== -1) return { choice: scene.choices[exactIndex], index: exactIndex };
+
+  const number = Number.parseInt(cleaned, 10);
   if (Number.isInteger(number) && String(number) === cleaned) {
-    return { choice: scene.choices[number - 1], index: number - 1 };
+    const numericIndex = number - 1;
+    if (scene.choices[numericIndex]) {
+      return { choice: scene.choices[numericIndex], index: numericIndex };
+    }
   }
 
-  const index = scene.choices.findIndex((choice) =>
-    choice.verbs?.some((verb) => cleaned === verb || cleaned.includes(verb))
+  const fuzzyIndex = scene.choices.findIndex((choice) =>
+    choice.verbs?.some((verb) => cleaned.includes(verb))
   );
-
-  return { choice: scene.choices[index], index };
+  return { choice: scene.choices[fuzzyIndex], index: fuzzyIndex };
 }
 
 function initGame() {
@@ -395,6 +537,12 @@ function initGame() {
       return;
     }
 
+    if (choice.feedback && !choice.to) {
+      writeMessage(choice.feedback);
+      state.invalidCommands = 0;
+      return;
+    }
+
     if (choice.reset) {
       Object.assign(state, createInitialState());
     }
@@ -405,6 +553,7 @@ function initGame() {
     state.invalidCommands = 0;
     autoSave();
     renderScene();
+    if (choice.success) writeMessage(choice.success);
   }
 
   function writeMessage(message) {
@@ -508,12 +657,18 @@ function initGame() {
     }
 
     if (['help', '?'].includes(command)) {
-      writeMessage('Commands: type a choice number, SAVE, LOAD, BAG, MAP, HINT, LOOK, PAT BAXTER, or RESTART. You can also try commands like GO HALL, TALK JO, or FOLLOW PRINTS.');
+      writeMessage('Commands: type a choice number, SAVE, LOAD, BAG, MAP, HINT, LOOK, JOKE, PAT BAXTER, or RESTART. You can also try commands like GO HALL, TALK JO, or FOLLOW PRINTS.');
       return;
     }
 
     if (['pat baxter', 'pet baxter', 'pat dog', 'pet dog', 'good boy'].includes(command)) {
       writeMessage('Baxter wags his tail so hard his whole body wiggles. He licks your hand and waits for the next clue.');
+      return;
+    }
+
+    if (['joke', 'tell joke', 'tell a joke', 'riddle'].includes(command)) {
+      const joke = JOKES[Math.floor(Math.random() * JOKES.length)];
+      writeMessage(`(Wilfred whispers a joke.) ${joke}`);
       return;
     }
 
@@ -536,7 +691,7 @@ function initGame() {
     writeMessage('Saved mystery loaded. Type RESTART for a new game.');
   } else {
     renderScene();
-    writeMessage('Welcome, detective! Tap a numbered choice or type one. Stuck? Try HINT, MAP, or PAT BAXTER.');
+    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, or PAT BAXTER. The school is bigger than it looks — clues are hiding in the cloak bay, the playground, the tuck shop, and the music room too.');
   }
 }
 
