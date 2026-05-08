@@ -252,6 +252,52 @@ button:disabled {
   color: var(--muted);
 }
 
+@media (min-width: 900px) {
+  .crt-shell {
+    display: grid;
+    grid-template-columns: minmax(14rem, 0.55fr) minmax(20rem, 1.1fr) minmax(14rem, 0.55fr);
+    grid-template-areas:
+      "top       top       top"
+      "picture   terminal  choices"
+      "inventory inventory inventory";
+    gap: 1rem;
+    align-content: start;
+  }
+
+  .screen-grid {
+    display: contents;
+  }
+
+  .top-panel {
+    grid-area: top;
+    margin-bottom: 0;
+  }
+
+  .picture-frame {
+    grid-area: picture;
+  }
+
+  .terminal {
+    grid-area: terminal;
+    min-height: 18rem;
+  }
+
+  .choices {
+    grid-area: choices;
+    margin-top: 0;
+    align-content: start;
+  }
+
+  .inventory-panel {
+    grid-area: inventory;
+    margin-top: 0;
+  }
+
+  .scene-art {
+    min-height: 13rem;
+  }
+}
+
 @media (max-width: 760px) {
   .crt-shell {
     padding-inline: 0.65rem;
@@ -300,6 +346,34 @@ button:disabled {
   );
   mix-blend-mode: screen;
   animation: scanline-flicker 4s steps(2, end) infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-out both;
+}
+
+@keyframes flash-update {
+  0%   { background: var(--muted); color: #000; }
+  60%  { background: var(--muted); color: #000; }
+  100% { background: transparent; color: var(--muted); }
+}
+
+.flash-update {
+  animation: flash-update 0.8s ease-out both;
+}
+
+@keyframes art-pulse {
+  0%   { filter: brightness(1.7); text-shadow: 0 0 0.7rem rgba(255, 255, 255, 0.7); }
+  100% { filter: brightness(1);   text-shadow: 0 0 0.35rem rgba(255, 255, 255, 0.4); }
+}
+
+.art-pulse {
+  animation: art-pulse 0.55s ease-out both;
 }
 
 @keyframes scanline-flicker {
