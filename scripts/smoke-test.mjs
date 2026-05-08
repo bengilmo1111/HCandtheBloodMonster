@@ -19,13 +19,14 @@ const requiredNames = [
   'Ben',
   'Zoe',
   'Baxter',
-  'Michael Gendall',
-  'Chrissy Laiman',
-  'Andrea Rogers',
-  'Andrea Sinclair',
-  'Penny Holotau',
-  'Jo Nash',
-  'Craig Webb'
+  'Mr Gendall',
+  'Chrissy',
+  'Andrea',
+  'Penny',
+  'Jo',
+  'Mr Webb',
+  'Kate',
+  'Julia'
 ];
 
 const failures = [];
@@ -45,15 +46,37 @@ if (!game.includes('beetroot') || !game.includes('washable paint')) {
   failures.push('PG-safe explanation for blood-like clue is missing.');
 }
 
+if (!game.includes('pat baxter')) failures.push('Baxter pat command (kid-friendly) is missing.');
+if (!game.includes('Welcome, detective')) failures.push('First-time welcome message is missing.');
+if (!game.includes("'joke'")) failures.push('JOKE command is missing.');
+
+const puzzleScenes = ['cloakbay', 'playground', 'tuckshop', 'musicroom', 'propRoom'];
+for (const id of puzzleScenes) {
+  if (!scenes[id]) failures.push(`Puzzle scene ${id} is missing.`);
+}
+
 for (const [sceneId, scene] of Object.entries(scenes)) {
   if (!ART[scene.art]) failures.push(`${sceneId} references missing art: ${scene.art}`);
   if (!scene.title || !scene.caption || !scene.text?.length) failures.push(`${sceneId} is missing story text.`);
   if (!scene.choices?.length) failures.push(`${sceneId} has no choices.`);
+  if (!scene.hint) failures.push(`${sceneId} is missing a kid-friendly HINT.`);
 
   for (const choice of scene.choices) {
     if (choice.to && !scenes[choice.to]) failures.push(`${sceneId} points to missing scene: ${choice.to}`);
-    if (!choice.to && !choice.command) failures.push(`${sceneId} has a choice without a destination or command.`);
+    if (!choice.to && !choice.command && !choice.feedback) {
+      failures.push(`${sceneId} has a choice without a destination, command, or feedback.`);
+    }
   }
+}
+
+for (const id of puzzleScenes) {
+  const s = scenes[id];
+  const hasFeedback = s.choices.some((c) => c.feedback);
+  const hasReward = s.choices.some((c) => c.add && c.to);
+  const hasEscape = s.choices.some((c) => c.to && !c.add);
+  if (!hasFeedback) failures.push(`${id} should have at least one feedback (wrong-answer) choice.`);
+  if (!hasReward) failures.push(`${id} should have a correct-answer choice that adds a clue.`);
+  if (!hasEscape) failures.push(`${id} should have a no-clue exit so kids never get stuck.`);
 }
 
 const winningRoute = ['start', 'toilets', 'garden', 'hall', 'ending'];

@@ -13,8 +13,9 @@ Build a kid-friendly, browser-based retro text adventure inspired by 1980s illus
 Hutt Central School details currently used in the game:
 - School address: 6 Railway Avenue, Lower Hutt 5010.
 - Values from the school site: respect, responsibility, resilience, and creativity.
-- Staff referenced from the school staff page: Michael Gendall, Chrissy Laiman, Andrea Rogers, Penny Holotau, Jo Nash, Craig Webb, Andrea Sinclair, Kate Shirley, Julia Dal Vesco, and Zoe Thompson-Edgeler.
-- School areas used as scenes: gate, toilets, school office, office corridor, senior courts, library, quiet garden, Room 10, and hall.
+- Staff referenced from the school staff page (source data): Michael Gendall, Chrissy Laiman, Andrea Rogers, Penny Holotau, Jo Nash, Craig Webb, Andrea Sinclair, Kate Shirley, Julia Dal Vesco, and Zoe Thompson-Edgeler.
+- In-game presentation: only Mr Gendall and Mr Webb keep a surname (and the title is the only form used in dialogue). All other staff appear by first name only — Chrissy, Andrea, Jo, Penny, Kate, Julia, and Zoe — matching how kids actually address them at school. Roles (principal, deputy, etc.) are not stated in dialogue; the audience already knows the cast.
+- School areas used as scenes: gate, toilets, school office, office corridor, senior courts, library, quiet garden, Room 10, hall, cloak bay, playground, tuck shop, music room, and prop room.
 
 ## Required characters
 - Henry Gilmore and Casper Gilmore as the main heroes.
@@ -36,11 +37,28 @@ Hutt Central School details currently used in the game:
 
 ## Current command vocabulary
 - Numbered choices, for example `1`.
+- A typed answer to a puzzle, for example `17`, `eight`, `2:45`. The parser prefers an exact verb match over the positional choice index, so puzzle answers always win over button position.
 - `SAVE`
 - `LOAD`
 - `BAG`, `INVENTORY`, or `NOTEBOOK`
-- `LOOK`, `HELP`, or `?`
+- `LOOK` (re-describes the current scene)
+- `HELP` or `?`
 - `MAP`
-- `HINT`
-- Parser shortcuts matching visible choices, such as `GO HALL`, `TALK JO`, `FOLLOW PRINTS`, and `USE TORCH`
+- `HINT` (each scene has its own kid-friendly nudge)
+- `JOKE` or `RIDDLE` (random kid-friendly joke)
+- `PAT BAXTER` / `PET BAXTER` / `GOOD BOY` (friendly Easter egg)
+- Parser shortcuts matching visible choices, such as `GO HALL`, `TALK JO`, `FOLLOW PRINTS`, `USE TORCH`, `GO TUCK SHOP`, `HOPSCOTCH`, `MUSIC ROOM`, `PROP ROOM`, and `CHECK COATS`.
 - `RESTART`
+
+## Hidden curriculum (puzzle scenes)
+Five optional side scenes quietly drill primary-school maths skills while staying in-character. Players never see the words "maths" or "puzzle" — each one is framed as a detective decision.
+
+| Scene | Skill | Puzzle |
+| --- | --- | --- |
+| Cloak Bay | Multiplication and subtraction | 3 rows × 7 hooks − 4 missing = 17 jumpers |
+| Playground | Number patterns / skip-counting | 2, 4, 6, ?, 10, 12 → 8 |
+| Tuck Shop | Division and money | 8 kids ÷ 2 share each = 4 cookies × $3 = $12 |
+| Music Room | Common multiples (LCM lite) | drum every 3, cymbal every 4 → meet on 12 |
+| Prop Room | Clock reading and fractions of an hour | big hand on 9 = 45 past; small hand 2 → 3 = 2:45 |
+
+Wrong answers never end the game: each puzzle scene has a no-clue exit and feedback lines that nudge thinking ("we are counting in twos, not ones") rather than scolding. The main winning path bypasses the puzzles entirely so a younger or stuck player can still finish.
