@@ -45,7 +45,12 @@ Delivered:
 ### 4. Add accessibility and reading support
 - Add dyslexia-friendly font toggle.
 - Add reduced flicker/high contrast controls.
-- Add optional read-aloud support using browser speech synthesis.
+- Optional read-aloud support using browser speech synthesis: DONE.
+  - Toggle button (`#read-toggle`) in the top-panel status area, with `aria-pressed` for screen-reader correctness. Persists across sessions in `localStorage` under `PREF_KEY` (`hc-blood-monster-pref-v1`).
+  - When ON: `renderScene` speaks the scene title, each body paragraph, and each choice label as `Choice N: ...` via `SpeechSynthesisUtterance` (rate 0.95). Speech is cancelled before every render so utterances don't pile up if a kid taps fast.
+  - `writeMessage(text, { silent })` auto-speaks system text (hints, feedback, jokes). Long technical messages (HELP text, MAP "you are at" line, MAP_TEXT legend) pass `silent: true` so they appear visually but stay quiet.
+  - Commands: `READ` / `SPEAK` re-reads the current scene once even if the toggle is off; `STOP` / `SHUSH` / `QUIET` cancels speech immediately; `READ ALOUD ON|OFF`, `VOICE ON|OFF`, `SPEECH ON|OFF` flip the persistent toggle from the parser.
+  - The button is auto-disabled with a tooltip if the browser has no `speechSynthesis` (e.g. very old browsers).
 
 ### 5. Playtest with children and caregivers
 - Check that the mystery is clear, not too scary, and solvable in 20 minutes.

@@ -51,6 +51,13 @@ if (!game.includes('Welcome, detective')) failures.push('First-time welcome mess
 if (!game.includes("'joke'")) failures.push('JOKE command is missing.');
 if (typeof buildMap !== 'function') failures.push('buildMap function is missing.');
 
+if (!game.includes('SpeechSynthesisUtterance')) failures.push('Read-aloud (SpeechSynthesisUtterance) wiring is missing.');
+if (!game.includes('PREF_KEY')) failures.push('Read-aloud preference key is missing.');
+if (!game.includes("'read'")) failures.push('READ command is missing.');
+if (!game.includes("'stop'")) failures.push('STOP command is missing.');
+if (!html.includes('id="read-toggle"')) failures.push('Read-aloud toggle button is missing from HTML.');
+if (!styles.includes('.read-toggle')) failures.push('Read-aloud toggle CSS is missing.');
+
 const sampleMap = buildMap('garden', ['start', 'toilets', 'garden']);
 if (!sampleMap.includes('HUTT CENTRAL SCHOOL MAP')) failures.push('buildMap output is missing the title.');
 if (!sampleMap.includes('[*] garden')) failures.push('buildMap should mark the current scene with [*].');

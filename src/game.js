@@ -1,5 +1,6 @@
 export const SAVE_KEY = 'hc-blood-monster-save-v2';
 export const LEGACY_SAVE_KEY = 'hc-blood-monster-save-v1';
+export const PREF_KEY = 'hc-blood-monster-pref-v1';
 
 export const STAFF = {
   michael: 'Mr Gendall',
@@ -469,6 +470,56 @@ function initGame() {
   const form = document.querySelector('#command-form');
   const input = document.querySelector('#command-input');
   const saveStatus = document.querySelector('#save-status');
+  const readToggle = document.querySelector('#read-toggle');
+  const synth = typeof window !== 'undefined' && 'speechSynthesis' in window ? window.speechSynthesis : null;
+  let readAloud = false;
+
+  function loadPreference() {
+    try {
+      const raw = localStorage.getItem(PREF_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (typeof parsed.readAloud === 'boolean') readAloud = parsed.readAloud;
+    } catch {}
+  }
+
+  function savePreference() {
+    try {
+      localStorage.setItem(PREF_KEY, JSON.stringify({ readAloud }));
+    } catch {}
+  }
+
+  function cancelSpeech() {
+    if (synth) synth.cancel();
+  }
+
+  function speak(text) {
+    if (!readAloud || !synth || !text) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    synth.speak(utterance);
+  }
+
+  function speakLines(lines) {
+    if (!readAloud || !synth) return;
+    for (const line of lines) {
+      if (line && String(line).trim()) speak(String(line));
+    }
+  }
+
+  function updateReadToggle() {
+    if (!readToggle) return;
+    readToggle.setAttribute('aria-pressed', readAloud ? 'true' : 'false');
+    readToggle.textContent = `READ ALOUD: ${readAloud ? 'ON' : 'OFF'}`;
+  }
+
+  function setReadAloud(on) {
+    readAloud = !!on;
+    savePreference();
+    updateReadToggle();
+    if (!readAloud) cancelSpeech();
+  }
 
   function addItem(item) {
     if (item && !state.inventory.includes(item)) {
@@ -490,6 +541,8 @@ function initGame() {
     if (!state.visited.includes(state.sceneId)) {
       state.visited.push(state.sceneId);
     }
+
+    cancelSpeech();
 
     artEl.textContent = ART[scene.art];
     captionEl.textContent = scene.caption;
@@ -514,6 +567,8 @@ function initGame() {
       const stars = '*'.repeat(Math.min(5, Math.max(1, state.inventory.length)));
       writeMessage(`Case file: ${state.inventory.length} clue${state.inventory.length === 1 ? '' : 's'} collected in ${state.turns} turn${state.turns === 1 ? '' : 's'}. Detective rating: ${stars}`);
     }
+
+    speakLines([scene.title, ...scene.text, ...scene.choices.map((c, i) => `Choice ${i + 1}: ${c.label}`)]);
   }
 
   function renderChoices(scene) {
@@ -580,12 +635,13 @@ function initGame() {
     if (choice.success) writeMessage(choice.success);
   }
 
-  function writeMessage(message) {
+  function writeMessage(message, { silent = false } = {}) {
     const paragraph = document.createElement('p');
     paragraph.className = 'system-message';
     paragraph.textContent = message;
     storyLog.append(paragraph);
     paragraph.scrollIntoView({ block: 'nearest' });
+    if (!silent) speak(message);
   }
 
   function writePre(text) {
@@ -676,8 +732,8 @@ function initGame() {
     if (command === 'map') {
       writePre(buildMap(state.sceneId, state.visited));
       const total = Object.keys(scenes).length;
-      writeMessage(`You are at: ${scene.title}.  Visited: ${state.visited.length} of ${total} places.`);
-      writeMessage(MAP_TEXT);
+      writeMessage(`You are at: ${scene.title}.  Visited: ${state.visited.length} of ${total} places.`, { silent: true });
+      writeMessage(MAP_TEXT, { silent: true });
       return;
     }
 
@@ -692,7 +748,7 @@ function initGame() {
     }
 
     if (['help', '?'].includes(command)) {
-      writeMessage('Commands: type a choice number, SAVE, LOAD, BAG, MAP, HINT, LOOK, JOKE, PAT BAXTER, or RESTART. You can also try commands like GO HALL, TALK JO, or FOLLOW PRINTS.');
+      writeMessage('Commands: type a choice number, SAVE, LOAD, BAG, MAP, HINT, LOOK, JOKE, PAT BAXTER, READ, STOP, or RESTART. You can also try commands like GO HALL, TALK JO, or FOLLOW PRINTS.', { silent: true });
       return;
     }
 
@@ -704,6 +760,38 @@ function initGame() {
     if (['joke', 'tell joke', 'tell a joke', 'riddle'].includes(command)) {
       const joke = JOKES[Math.floor(Math.random() * JOKES.length)];
       writeMessage(`(Wilfred whispers a joke.) ${joke}`);
+      return;
+    }
+
+    if (['read', 'speak', 'read aloud', 'read scene', 'say it'].includes(command)) {
+      if (!synth) {
+        writeMessage('This browser cannot read aloud. Try a different browser.', { silent: true });
+        return;
+      }
+      const wasOn = readAloud;
+      readAloud = true;
+      cancelSpeech();
+      speakLines([scene.title, ...scene.text, ...scene.choices.map((c, i) => `Choice ${i + 1}: ${c.label}`)]);
+      if (!wasOn) writeMessage('(Reading this scene once. Tap READ ALOUD to keep it on.)', { silent: true });
+      readAloud = wasOn;
+      return;
+    }
+
+    if (['stop', 'shush', 'quiet', 'be quiet', 'stop reading'].includes(command)) {
+      cancelSpeech();
+      writeMessage('Quiet now.', { silent: true });
+      return;
+    }
+
+    if (['read aloud on', 'voice on', 'speech on'].includes(command)) {
+      setReadAloud(true);
+      writeMessage('Read aloud is ON. New scenes will be spoken.', { silent: true });
+      return;
+    }
+
+    if (['read aloud off', 'voice off', 'speech off'].includes(command)) {
+      setReadAloud(false);
+      writeMessage('Read aloud is OFF.', { silent: true });
       return;
     }
 
@@ -721,12 +809,29 @@ function initGame() {
     input.value = '';
   });
 
+  loadPreference();
+  updateReadToggle();
+  if (readToggle) {
+    if (!synth) {
+      readToggle.disabled = true;
+      readToggle.title = 'Read aloud is not supported in this browser.';
+    } else {
+      readToggle.addEventListener('click', () => {
+        setReadAloud(!readAloud);
+        if (readAloud) {
+          // Re-read the current scene immediately so the user gets feedback.
+          handleCommand('read');
+        }
+      });
+    }
+  }
+
   if (loadSave()) {
     renderScene();
     writeMessage('Saved mystery loaded. Type RESTART for a new game.');
   } else {
     renderScene();
-    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, or PAT BAXTER. The school is bigger than it looks — clues are hiding in the cloak bay, the playground, the tuck shop, and the music room too.');
+    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — clues are hiding in the cloak bay, the playground, the tuck shop, and the music room too.');
   }
 }
 

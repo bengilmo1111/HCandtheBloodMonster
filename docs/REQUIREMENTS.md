@@ -47,6 +47,9 @@ Hutt Central School details currently used in the game:
 - `HINT` (each scene has its own kid-friendly nudge)
 - `JOKE` or `RIDDLE` (random kid-friendly joke)
 - `PAT BAXTER` / `PET BAXTER` / `GOOD BOY` (friendly Easter egg)
+- `READ` / `SPEAK` / `READ SCENE` / `SAY IT` (re-reads the current scene aloud once, even with the toggle off)
+- `STOP` / `SHUSH` / `QUIET` / `BE QUIET` / `STOP READING` (cancels current speech)
+- `READ ALOUD ON|OFF`, `VOICE ON|OFF`, `SPEECH ON|OFF` (flip the persistent read-aloud toggle from the parser)
 - Parser shortcuts matching visible choices, such as `GO HALL`, `TALK JO`, `FOLLOW PRINTS`, `USE TORCH`, `GO TUCK SHOP`, `HOPSCOTCH`, `MUSIC ROOM`, `PROP ROOM`, and `CHECK COATS`.
 - `RESTART`
 
