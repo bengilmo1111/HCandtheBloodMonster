@@ -534,7 +534,14 @@ function initGame() {
     }, 900);
   }
 
-  function renderScene() {
+  function pulse(el, className) {
+    if (!el) return;
+    el.classList.remove(className);
+    void el.offsetWidth;
+    el.classList.add(className);
+  }
+
+  function renderScene(newItem = null) {
     const scene = scenes[state.sceneId];
     if (!scene) return;
 
@@ -549,18 +556,22 @@ function initGame() {
     saveStatus.textContent = `TURN ${state.turns}`;
     storyLog.innerHTML = '';
 
+    pulse(artEl, 'art-pulse');
+
     const title = document.createElement('h2');
     title.textContent = scene.title;
+    title.classList.add('fade-in');
     storyLog.append(title);
 
     scene.text.forEach((line) => {
       const paragraph = document.createElement('p');
       paragraph.textContent = line;
+      paragraph.classList.add('fade-in');
       storyLog.append(paragraph);
     });
 
     renderChoices(scene);
-    renderInventory();
+    renderInventory(newItem);
     input.value = '';
 
     if (state.sceneId === 'ending') {
@@ -577,7 +588,7 @@ function initGame() {
       const button = document.createElement('button');
       const missingItems = choice.requires?.filter((item) => !state.inventory.includes(item)) ?? [];
       button.type = 'button';
-      button.className = 'choice-button';
+      button.className = 'choice-button fade-in';
       button.disabled = missingItems.length > 0;
       button.textContent = missingItems.length
         ? `${index + 1}. ${choice.label} (need: ${missingItems.join(', ')})`
@@ -587,12 +598,13 @@ function initGame() {
     });
   }
 
-  function renderInventory() {
+  function renderInventory(newItem = null) {
     inventoryEl.innerHTML = '';
     const items = state.inventory.length ? state.inventory : ['empty pockets', 'brave questions'];
     items.forEach((item) => {
       const li = document.createElement('li');
       li.textContent = item;
+      if (item === newItem) li.classList.add('flash-update');
       inventoryEl.append(li);
     });
   }
@@ -626,18 +638,19 @@ function initGame() {
       Object.assign(state, createInitialState());
     }
 
+    const newItem = choice.add && !state.inventory.includes(choice.add) ? choice.add : null;
     addItem(choice.add);
     state.sceneId = choice.to;
     state.turns += 1;
     state.invalidCommands = 0;
     autoSave();
-    renderScene();
+    renderScene(newItem);
     if (choice.success) writeMessage(choice.success);
   }
 
   function writeMessage(message, { silent = false } = {}) {
     const paragraph = document.createElement('p');
-    paragraph.className = 'system-message';
+    paragraph.className = 'system-message fade-in';
     paragraph.textContent = message;
     storyLog.append(paragraph);
     paragraph.scrollIntoView({ block: 'nearest' });
@@ -646,7 +659,7 @@ function initGame() {
 
   function writePre(text) {
     const block = document.createElement('pre');
-    block.className = 'story-pre';
+    block.className = 'story-pre fade-in';
     block.textContent = text;
     storyLog.append(block);
     block.scrollIntoView({ block: 'nearest' });
