@@ -45,10 +45,14 @@ if (!game.includes('beetroot') || !game.includes('washable paint')) {
   failures.push('PG-safe explanation for blood-like clue is missing.');
 }
 
+if (!game.includes('pat baxter')) failures.push('Baxter pat command (kid-friendly) is missing.');
+if (!game.includes('Welcome, detective')) failures.push('First-time welcome message is missing.');
+
 for (const [sceneId, scene] of Object.entries(scenes)) {
   if (!ART[scene.art]) failures.push(`${sceneId} references missing art: ${scene.art}`);
   if (!scene.title || !scene.caption || !scene.text?.length) failures.push(`${sceneId} is missing story text.`);
   if (!scene.choices?.length) failures.push(`${sceneId} has no choices.`);
+  if (!scene.hint) failures.push(`${sceneId} is missing a kid-friendly HINT.`);
 
   for (const choice of scene.choices) {
     if (choice.to && !scenes[choice.to]) failures.push(`${sceneId} points to missing scene: ${choice.to}`);

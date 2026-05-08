@@ -94,6 +94,7 @@ export const scenes = {
     art: 'gate',
     caption: 'Railway Avenue. The bell has just gone quiet.',
     title: 'The Rumour at the Gate',
+    hint: 'A good detective starts where the rumour started. The toilets are choice 1.',
     text: [
       'Henry Gilmore and Casper Gilmore stop at the Hutt Central School gate. Guaranjot, Benji, Sam, Wilfred, Jessie, and Nina crowd close.',
       'Everyone has heard the same whisper: the Blood Monster lives near the toilets. There are red spatters on the concrete, strange noises at lunchtime, and two kids have not come back from their game.',
@@ -109,6 +110,7 @@ export const scenes = {
     art: 'toilets',
     caption: 'The toilets are empty, but something taps inside the wall.',
     title: 'The Red Spatters',
+    hint: 'Paw prints lead somewhere quiet and green. Try FOLLOW PRINTS.',
     text: [
       'The spatter is bright red, but it smells sweet, like beetroot and poster paint. Jessie writes that down. Sam hears a tiny clank behind a locked cleaning cupboard.',
       `${STAFF.chrissy} appears with a folder. She says, “Please keep clear of wet paint, team.” Then she hurries away before anyone can ask about monsters. Very suspicious.`,
@@ -124,6 +126,7 @@ export const scenes = {
     art: 'office',
     caption: 'The office smells like paper, raincoats, and warm photocopying.',
     title: 'Keys and Kind Warnings',
+    hint: 'Borrow a torch, then read the corridor map. Notes mean something.',
     text: [
       `${STAFF.jo} smiles at the Mystery Club. ${STAFF.penny} checks the sign-in sheet and says the missing children are safe, but she cannot spoil a “special surprise”.`,
       `${STAFF.michael} walks past with a red-stained mop. He says, “Good investigators check facts, not rumours.” Henry decides that is either a clue or principal wisdom. Maybe both.`,
@@ -139,6 +142,7 @@ export const scenes = {
     art: 'courts',
     caption: 'The new turf glows green under a grey sky.',
     title: 'Squeaks on the Courts',
+    hint: 'A glittery curtain cord must lead somewhere. Try FOLLOW CORD.',
     text: [
       'Benji finds a red rubber ball with tooth marks. Wilfred finds a trail of glitter. Guaranjot says glitter is not normally part of monster behaviour.',
       `${STAFF.andrea} is helping juniors line up. She gently redirects the club away from the hall doors and says, “Not yet.”`,
@@ -154,6 +158,7 @@ export const scenes = {
     art: 'corridor',
     caption: 'The corridor has a map, raincoat pegs, and one mysterious prop box.',
     title: 'The Corridor Map',
+    hint: 'Glitter splits two ways. The library hides a clue, but the hall hides the show.',
     text: [
       'The school map marks the hall, library, senior courts, Room 10, and the quiet garden. Henry copies it into the notebook.',
       `${STAFF.andreaSinclair} carries a box of felt fangs past the club. She gives a tiny smile and says, “No peeking until assembly.”`,
@@ -169,6 +174,7 @@ export const scenes = {
     art: 'library',
     caption: 'A book display says: Brave readers ask brave questions.',
     title: 'The Goosebumps Shelf',
+    hint: 'The bookmark says “say hello”. That sounds like the hall.',
     text: [
       'Nina finds a bookmark shaped like a fang. On the back it says: IF YOU HEAR THUMPING, DO NOT RUN. SAY HELLO.',
       `${STAFF.kate} and ${STAFF.julia} whisper about costumes for a resilience assembly. They stop when they see the club, then laugh in the way adults laugh when they know a secret.`,
@@ -184,6 +190,7 @@ export const scenes = {
     art: 'room',
     caption: 'Room 10 has charts, pencils, and one very red paintbrush.',
     title: 'Room 10 Paint Mystery',
+    hint: 'Dragon Red paint explains the spatters. Try the library or the hall next.',
     text: [
       `${STAFF.zoeTeacher} says Room 10 painted scenery this morning. The paint was called Dragon Red, which seems like a clue trying too hard.`,
       'She also says no one is in danger. Then she asks the club to practise the school values: respect, responsibility, resilience, and creativity.',
@@ -199,6 +206,7 @@ export const scenes = {
     art: 'toilets',
     caption: 'The tapping becomes words through the pipe.',
     title: 'Voices in the Wall',
+    hint: 'A happy bark just came from the garden. Race there.',
     text: [
       'Henry presses his ear to the cool wall. A tiny voice says, “Is the surprise ready?” Another voice says, “Baxter stole the head!”',
       'Casper gulps. A monster with a stolen head is not a calming thought.',
@@ -213,6 +221,7 @@ export const scenes = {
     art: 'garden',
     caption: 'Flax leaves shiver. A red shape hides near the logs.',
     title: 'Baxter and the Red Head',
+    hint: 'Baxter has the monster head. Take it to the hall to finish the case.',
     text: [
       'Baxter pops out with a giant papier-mâché monster head in his mouth. It is red, sparkly, and only a little chewed. Zoe and Ben call softly from the gate so he does not run through the school.',
       'The missing children are crouched behind the logs with clipboards. They were helping with a secret assembly about solving rumours kindly.',
@@ -228,6 +237,7 @@ export const scenes = {
     art: 'hall',
     caption: 'The curtain breathes in and out. Or maybe that is a fan.',
     title: 'Behind the Curtain',
+    hint: 'You need the monster head before you can SAY HELLO. Find Baxter in the garden.',
     text: [
       'The whole Mystery Club gathers: Henry, Casper, Guaranjot, Benji, Sam, Wilfred, Jessie, and Nina. They put every clue on the floor like detectives on TV.',
       `${STAFF.michael}, ${STAFF.chrissy}, and ${STAFF.andrea} step from behind the curtain. They were not hiding a danger. They were preparing a surprise assembly about checking rumours before they grow teeth.`,
@@ -243,6 +253,7 @@ export const scenes = {
     art: 'end',
     caption: 'A friendly monster, a brave club, and one proud dog.',
     title: 'The Blood Monster Revealed',
+    hint: 'You solved it! Try PLAY AGAIN, or peek in the BAG for your case file.',
     text: [
       'Henry says, “Hello?” Casper holds the torch steady. The curtain opens.',
       'The Blood Monster is a wobbly red puppet for the school assembly. Baxter stole its head, the pipes made the groans, and the “blood” was washable paint mixed with beetroot juice for colour.',
@@ -332,6 +343,11 @@ function initGame() {
     renderChoices(scene);
     renderInventory();
     input.value = '';
+
+    if (state.sceneId === 'ending') {
+      const stars = '*'.repeat(Math.min(5, Math.max(1, state.inventory.length)));
+      writeMessage(`Case file: ${state.inventory.length} clue${state.inventory.length === 1 ? '' : 's'} collected in ${state.turns} turn${state.turns === 1 ? '' : 's'}. Detective rating: ${stars}`);
+    }
   }
 
   function renderChoices(scene) {
@@ -486,8 +502,18 @@ function initGame() {
       return;
     }
 
-    if (['look', 'help', '?'].includes(command)) {
-      writeMessage('Commands: type a choice number, SAVE, LOAD, BAG, MAP, HINT, LOOK, or RESTART. You can also try commands like GO HALL, TALK JO, or FOLLOW PRINTS.');
+    if (command === 'look') {
+      renderScene();
+      return;
+    }
+
+    if (['help', '?'].includes(command)) {
+      writeMessage('Commands: type a choice number, SAVE, LOAD, BAG, MAP, HINT, LOOK, PAT BAXTER, or RESTART. You can also try commands like GO HALL, TALK JO, or FOLLOW PRINTS.');
+      return;
+    }
+
+    if (['pat baxter', 'pet baxter', 'pat dog', 'pet dog', 'good boy'].includes(command)) {
+      writeMessage('Baxter wags his tail so hard his whole body wiggles. He licks your hand and waits for the next clue.');
       return;
     }
 
@@ -510,6 +536,7 @@ function initGame() {
     writeMessage('Saved mystery loaded. Type RESTART for a new game.');
   } else {
     renderScene();
+    writeMessage('Welcome, detective! Tap a numbered choice or type one. Stuck? Try HINT, MAP, or PAT BAXTER.');
   }
 }
 

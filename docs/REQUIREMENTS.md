@@ -39,8 +39,10 @@ Hutt Central School details currently used in the game:
 - `SAVE`
 - `LOAD`
 - `BAG`, `INVENTORY`, or `NOTEBOOK`
-- `LOOK`, `HELP`, or `?`
+- `LOOK` (re-describes the current scene)
+- `HELP` or `?`
 - `MAP`
-- `HINT`
+- `HINT` (each scene has its own kid-friendly nudge)
+- `PAT BAXTER` / `PET BAXTER` / `GOOD BOY` (friendly Easter egg)
 - Parser shortcuts matching visible choices, such as `GO HALL`, `TALK JO`, `FOLLOW PRINTS`, and `USE TORCH`
 - `RESTART`
