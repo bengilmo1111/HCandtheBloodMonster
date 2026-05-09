@@ -98,7 +98,7 @@ for (const id of puzzleScenes) {
   if (!hasEscape) failures.push(`${id} should have a no-clue exit so kids never get stuck.`);
 }
 
-const winningRoute = ['start', 'toilets', 'garden', 'hall', 'ending'];
+const winningRoute = ['start', 'toilets', 'garden', 'oldwing', 'hall', 'backstage', 'ending'];
 for (let index = 0; index < winningRoute.length - 1; index += 1) {
   const current = scenes[winningRoute[index]];
   const next = winningRoute[index + 1];

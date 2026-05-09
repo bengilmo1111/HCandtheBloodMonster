@@ -134,7 +134,31 @@ export const ART = {
   |  bike bike       |
   | OoO        OoO   |
   |__trike    trike__|
-       red flicker?`
+       red flicker?`,
+  oldwing: String.raw`
+        OLD WING
+   ___________________
+  |  ///   ///   //  |
+  |  HIGH scratches  |
+  |   flicker buzz   |
+  |__empty floor_____|
+       echo... echo`,
+  backstage: String.raw`
+        BACKSTAGE
+   ___________________
+  |  ropes paint pots |
+  |   crack [..][..]  |
+  |   bowl  blanket   |
+  |  warm pipes hum   |
+  |__shhh............|`,
+  boiler: String.raw`
+       BOILER ROOM
+   ___________________
+  |  |||  |||  |||   |
+  |  pipes hum warm   |
+  |   jumper saucer   |
+  |   beetroot leaves |
+  |__pebble arc::::::_|`
 };
 
 export const scenes = {
@@ -184,7 +208,8 @@ export const scenes = {
       { label: 'Borrow the torch and go to the toilets', to: 'toilets', add: 'torch', verbs: ['take torch', 'borrow torch', 'go toilets'] },
       { label: 'Check the office corridor map', to: 'corridor', add: 'hall note', verbs: ['go corridor', 'check map', 'read note'] },
       { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] },
-      { label: 'Visit Mr Webb\'s vegetable garden', to: 'vegegarden', verbs: ['go vege', 'vege garden', 'vegetable garden', 'talk webb'] }
+      { label: 'Visit Mr Webb\'s vegetable garden', to: 'vegegarden', verbs: ['go vege', 'vege garden', 'vegetable garden', 'talk webb'] },
+      { label: 'Slip down to the boiler room', to: 'boiler', verbs: ['go boiler', 'boiler room', 'boiler', 'down stairs'] }
     ]
   },
   courts: {
@@ -281,7 +306,7 @@ export const scenes = {
       `${STAFF.craig} arrives carrying a covered crate carefully in both hands. "Nearly time," he says to no one in particular, moving slowly.`
     ],
     choices: [
-      { label: 'Return the monster head to the hall', to: 'hall', add: 'monster head', verbs: ['take head', 'go hall', 'return head'] },
+      { label: 'Carry the monster head — Mr Webb points you through the old wing', to: 'oldwing', add: 'monster head', verbs: ['take head', 'go hall', 'return head', 'go oldwing', 'old wing'] },
       { label: 'Double-check the library clue first', to: 'library', verbs: ['go library'] },
       { label: 'Clean up the red paint spatters', to: 'toilets', add: 'bucket', verbs: ['clean paint', 'go toilets'] }
     ]
@@ -297,7 +322,7 @@ export const scenes = {
       'A thump from backstage shakes the floor. Then, slowly, a low hum that is almost a growl builds until the whole curtain trembles.'
     ],
     choices: [
-      { label: 'Say hello to whatever is backstage', to: 'ending', requires: ['monster head'], verbs: ['say hello', 'hello monster', 'go backstage'] },
+      { label: 'Step backstage with the staff', to: 'backstage', requires: ['monster head'], verbs: ['go backstage', 'step backstage', 'follow staff'] },
       { label: 'Gather more proof from the garden', to: 'garden', verbs: ['go garden'] },
       { label: 'Look for written proof in the library', to: 'library', verbs: ['go library'] },
       { label: 'Sneak into the prop room', to: 'propRoom', verbs: ['go prop', 'prop room', 'check props', 'open props'] }
@@ -423,6 +448,57 @@ export const scenes = {
       { label: 'Tell Wilfred 13 wheels', feedback: 'Wilfred shakes his head. "Two trikes have three wheels each — that is six, not three. Try again."', verbs: ['13', 'thirteen', 'tell thirteen'] },
       { label: 'Walk back to the courts', to: 'courts', verbs: ['go courts', 'back', 'leave'] }
     ]
+  },
+  oldwing: {
+    art: 'oldwing',
+    caption: 'A long, closed corridor. The lights buzz. Plaster smells damp.',
+    title: 'The Old Wing',
+    hint: 'The hall is past the broken double doors. Walk fast. Do not look up too long.',
+    text: [
+      'The shortcut to the hall runs through the school\'s old wing — fenced off for repairs since before any of the club started here. The strip lights buzz and flicker. The carpet is gone. Cold concrete underfoot.',
+      'Casper holds the torch. The beam catches a row of long scratch marks gouged deep into the plaster of the back wall. They are far higher than a child could reach. They are far higher than a kitten or a cat. Plaster dust still on the floor below them — fresh.',
+      'Henry takes a step back without meaning to. Whatever made those marks was a lot bigger than Beet. And it came through here this week.',
+      'From somewhere ahead, where the corridor turns toward the hall, the warm hum of the pipes goes briefly silent.'
+    ],
+    choices: [
+      { label: 'Hurry on to the hall', to: 'hall', add: 'wrong-size scratches', verbs: ['go hall', 'hurry', 'keep going', 'run'] },
+      { label: 'Take a careful look at the highest scratch', feedback: 'The scratch is the length of Henry\'s forearm and the depth of his thumbnail. Whatever did this had claws and weight. Jessie writes it down. Nobody jokes.', verbs: ['inspect scratches', 'look scratches', 'check marks', 'study marks'] },
+      { label: 'Turn back to the garden', to: 'garden', verbs: ['go garden', 'back', 'leave'] }
+    ]
+  },
+  backstage: {
+    art: 'backstage',
+    caption: 'Dust, ropes, painted flats. Something hums softly through the wall.',
+    title: 'Behind the Hall',
+    hint: 'Walk slow. Beet is right there. CALL his name when you are ready.',
+    text: [
+      `${STAFF.michael} holds a finger to his lips and leads the club into the narrow space behind the stage. ${STAFF.chrissy} steadies the curtain so it does not snap. ${STAFF.andrea} brings up the rear with the puppet head balanced carefully in both hands.`,
+      'It is dim and cluttered: paint pots, ropes coiled like sleeping snakes, a stack of carved heads from a play three years ago. The air smells of wood and beetroot. A low warm hum vibrates through the back wall, very close.',
+      'In the corner is a cracked panel where two pipes meet. Through the crack, two amber points of light blink slowly, then disappear. Casper does not breathe. The hum goes lower.',
+      'On the floor in front of the panel sits a chipped saucer of beetroot leaves, half-eaten. A folded red wool blanket is tucked neatly beside it. The children who had been "missing" stand quietly along the wall, watching the crack like people watching a baby sleep.'
+    ],
+    choices: [
+      { label: 'Quietly call his name', to: 'ending', requires: ['monster head'], verbs: ['call name', 'call beet', 'say beet', 'whisper', 'hello'] },
+      { label: 'Step softly back into the hall', to: 'hall', verbs: ['go hall', 'back', 'leave'] }
+    ]
+  },
+  boiler: {
+    art: 'boiler',
+    caption: 'Hot copper pipes, a bare bulb, and the smell of beetroot.',
+    title: 'The Boiler Room',
+    hint: 'There\'s no answer to find here — only a clue. Take the nest to your notebook and go.',
+    text: [
+      `${STAFF.craig} unlocks the boiler-room door and props it with a brick. He does not come inside. "Two minutes," he says quietly. "He is not down here right now. But this is where he sleeps."`,
+      'The boiler room is hot. Pipes of every size run up the walls and disappear into the ceiling. Some hum. One pulses, slowly, in time with something Henry cannot quite hear.',
+      'In the corner where two of the warmest pipes meet, someone has set up a small home: a folded woollen jumper as a bed, a chipped saucer of water, a careful pile of beetroot leaves, and a short row of polished pebbles arranged in a curve.',
+      'Sam crouches and touches the jumper. It is warm. Whoever sleeps here just left.',
+      `On the wall above the nest, in pencil, in ${STAFF.craig}'s neat handwriting: "Beet — settled — three weeks." Underneath, more recent, a date from two days ago and the words: "Something else? Check ceiling."`
+    ],
+    choices: [
+      { label: 'Add the nest to the notebook and head to the hall', to: 'hall', add: 'beet\'s nest', verbs: ['add nest', 'go hall', 'note nest'] },
+      { label: 'Look up at the ceiling', feedback: 'The ceiling is dark with old paint and older dust. Nothing moves. But one ceiling tile near the far corner is slightly out of place — pushed up from above. Sam taps it. Plaster dust falls.', verbs: ['look up', 'check ceiling', 'inspect ceiling'] },
+      { label: 'Slip back to the office', to: 'office', verbs: ['go office', 'back', 'leave'] }
+    ]
   }
 };
 
@@ -435,12 +511,13 @@ export function buildMap(currentSceneId, visited = []) {
     '',
     `[${at('start')}] GATE`,
     ' |',
-    ` +-- [${at('toilets')}] toilets --- [${at('garden')}] garden`,
+    ` +-- [${at('toilets')}] toilets --- [${at('garden')}] garden --- [${at('oldwing')}] old wing`,
     ` |     +-- [${at('pipe')}] pipe`,
     ' |',
     ` +-- [${at('office')}] office`,
     ` |     +-- [${at('room10')}] Room 10`,
     ` |     +-- [${at('vegegarden')}] vege garden (P)`,
+    ` |     +-- [${at('boiler')}] boiler room`,
     ` |     +-- [${at('corridor')}] corridor`,
     ` |           +-- [${at('library')}] library --- [${at('musicroom')}] music (P)`,
     ` |           +-- [${at('cloakbay')}] cloak bay (P)`,
@@ -448,7 +525,7 @@ export function buildMap(currentSceneId, visited = []) {
     ` +-- [${at('courts')}] courts`,
     `       +-- [${at('playground')}] playground (P)`,
     `       +-- [${at('bikeshed')}] bike shed (P)`,
-    `       +-- [${at('hall')}] HALL --- [${at('ending')}] ending`,
+    `       +-- [${at('hall')}] HALL --- [${at('backstage')}] backstage --- [${at('ending')}] ending`,
     `              +-- [${at('propRoom')}] prop room (P)`
   ].join('\n');
 }
@@ -899,7 +976,7 @@ function initGame() {
     writeMessage('Saved mystery loaded. Type RESTART for a new game.');
   } else {
     renderScene();
-    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — there are clues in the cloak bay, the playground, the music room, the prop room, the vegetable garden, and the bike shed.');
+    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — there are clues in the cloak bay, the playground, the music room, the prop room, the vegetable garden, the bike shed, and the boiler room. The old wing and the backstage area open up later.');
   }
 }
 
