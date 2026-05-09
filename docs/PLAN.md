@@ -20,9 +20,9 @@ Delivered:
 - Hidden curriculum (do NOT surface this to players): each puzzle scene quietly drills a primary-school maths skill while staying in-world.
   - `cloakbay` — multiplication + subtraction (3 rows × 7 hooks − 4 missing = 17).
   - `playground` — number patterns / skip-counting (2, 4, 6, ?, 10, 12 → 8).
-  - `tuckshop` — division and budget (8 detectives ÷ 2 each = 4 cookies × $3 = $12).
   - `musicroom` — common multiples (LCM of 3 and 4 = 12).
   - `propRoom` — clock reading (big hand on 9 = 45 min past, small hand 2 → 3 = 2:45).
+  - A division/money puzzle previously lived in a `tuckshop` scene but the scene was removed (the real school has no tuck shop). If we want to restore the division slot, a snack-sharing setup at the office or quiet garden would work without inventing a building that does not exist.
 - Wrong-answer choices use a `feedback` field on the choice (no `to`) so the player stays in the puzzle scene and gets a gentle nudge from a club member rather than a "wrong" buzzer. Every puzzle scene also has a no-clue exit so kids can never get stuck.
 
 ### 2. Improve the parser feel
@@ -68,7 +68,10 @@ Delivered:
 
 ## Recent playtest notes (2026-05-08)
 - Winning route start → toilets → garden → hall → ending solves cleanly in 4 turns.
-- Hall ending correctly stays locked until the `monster head` clue is in the notebook.
+- Hall ending correctly stays locked until the `monster head` clue is in the notebook. (The "monster head" is the assembly puppet, not the real monster — see story update below.)
 - Before this pass, HINT only ever printed a generic fallback because no scene defined `scene.hint`. Each scene now has a dedicated, gentle hint a 10-year-old can act on.
-- Five optional puzzle scenes added (cloakbay, playground, tuckshop, musicroom, propRoom), each disguising primary-school maths as detective work. Automated play-test confirms all puzzle answers route correctly via both numeric (`12`) and word (`twelve`) input, all wrong answers loop with feedback, all 16 scenes are reachable.
-- Staff-name convention updated: only Mr Gendall and Mr Webb keep a surname. All other staff appear by first name only and roles (principal, deputy, etc.) are dropped from dialogue. The smoke test's `requiredNames` list reflects this.
+- Optional puzzle scenes (cloakbay, playground, musicroom, propRoom) disguise primary-school maths as detective work. Automated play-test confirms all puzzle answers route correctly via both numeric (`12`) and word (`twelve`) input, all wrong answers loop with feedback, all scenes are reachable.
+- Staff-name convention: only Mr Gendall and Mr Webb keep a surname. All other staff appear by first name only and roles (principal, deputy, etc.) are dropped from dialogue. The smoke test's `requiredNames` list reflects this.
+
+## Story update: the monster is real (but kind)
+The earlier draft resolved the mystery as "no real monster, just a school assembly puppet." That was changed: there IS a real monster, but she is small, fuzzy, kitten-sized, and very shy — the kids name her Beet. She lives in the warm pipes (which is why the pipes hum), eats beetroot leaves from the garden (which is why the spatters are red and sweet), and the missing children had found her first and were quietly helping the staff plan a kind way to introduce her at assembly. The papier-mâché puppet still exists (so the inventory gating, "felt fangs", "wet paint" warnings, and Andrea-Sinclair-with-props clues all still make sense) — it is the on-stage representation of Beet so she will not be overwhelmed in front of the whole school. Story changes were limited to the garden, hall, and ending scenes; all puzzle scenes and main routes are unchanged.

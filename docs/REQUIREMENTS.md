@@ -15,7 +15,7 @@ Hutt Central School details currently used in the game:
 - Values from the school site: respect, responsibility, resilience, and creativity.
 - Staff referenced from the school staff page (source data): Michael Gendall, Chrissy Laiman, Andrea Rogers, Penny Holotau, Jo Nash, Craig Webb, Andrea Sinclair, Kate Shirley, Julia Dal Vesco, and Zoe Thompson-Edgeler.
 - In-game presentation: only Mr Gendall and Mr Webb keep a surname (and the title is the only form used in dialogue). All other staff appear by first name only — Chrissy, Andrea, Jo, Penny, Kate, Julia, and Zoe — matching how kids actually address them at school. Roles (principal, deputy, etc.) are not stated in dialogue; the audience already knows the cast.
-- School areas used as scenes: gate, toilets, school office, office corridor, senior courts, library, quiet garden, Room 10, hall, cloak bay, playground, tuck shop, music room, and prop room.
+- School areas used as scenes: gate, toilets, school office, office corridor, senior courts, library, quiet garden, Room 10, hall, cloak bay, playground, music room, and prop room. (There is no tuck shop at the real school; an earlier draft included one and has been removed.)
 
 ## Required characters
 - Henry Gilmore and Casper Gilmore as the main heroes.
@@ -24,7 +24,7 @@ Hutt Central School details currently used in the game:
 ## Story requirements
 - Premise: rumours say the Blood Monster lives in the toilets.
 - Clues: red spatters near the toilets, strange noises, evasive teachers, and missing children.
-- Resolution: the danger is not real. The red spatters are washable paint and beetroot colour, the noises are loose pipes, the missing children are safe, and the monster is a friendly school assembly puppet.
+- Resolution: the danger is not real, but the monster IS real. She is a small, fuzzy, kitten-sized creature called Beet who lives in the warm pipes and snacks on beetroot leaves from the garden. The red spatters are mostly her snack juice (with a little washable paint from the puppet workshop). The pipe noises are her humming. The "missing children" are safe — they had found her first and were quietly helping the staff plan a gentle assembly to introduce her to the school. The papier-mâché monster head still exists; it is the puppet the staff made to represent Beet on stage so she would not be overwhelmed.
 - Teachers must be portrayed respectfully and safely. Their evasiveness is about protecting a surprise, not hiding harm.
 
 ## Game requirements
@@ -54,14 +54,15 @@ Hutt Central School details currently used in the game:
 - `RESTART`
 
 ## Hidden curriculum (puzzle scenes)
-Five optional side scenes quietly drill primary-school maths skills while staying in-character. Players never see the words "maths" or "puzzle" — each one is framed as a detective decision.
+Four optional side scenes quietly drill primary-school maths skills while staying in-character. Players never see the words "maths" or "puzzle" — each one is framed as a detective decision.
 
 | Scene | Skill | Puzzle |
 | --- | --- | --- |
 | Cloak Bay | Multiplication and subtraction | 3 rows × 7 hooks − 4 missing = 17 jumpers |
 | Playground | Number patterns / skip-counting | 2, 4, 6, ?, 10, 12 → 8 |
-| Tuck Shop | Division and money | 8 kids ÷ 2 share each = 4 cookies × $3 = $12 |
 | Music Room | Common multiples (LCM lite) | drum every 3, cymbal every 4 → meet on 12 |
 | Prop Room | Clock reading and fractions of an hour | big hand on 9 = 45 past; small hand 2 → 3 = 2:45 |
+
+A division/money puzzle previously lived in a tuck-shop scene; that scene was removed because the real school has no tuck shop. If we want to restore the division curriculum slot, a snack-sharing setup at the office or quiet garden would work.
 
 Wrong answers never end the game: each puzzle scene has a no-clue exit and feedback lines that nudge thinking ("we are counting in twos, not ones") rather than scolding. The main winning path bypasses the puzzles entirely so a younger or stuck player can still finish.

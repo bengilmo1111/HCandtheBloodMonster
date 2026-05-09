@@ -69,7 +69,7 @@ for (const id of Object.keys(scenes)) {
   if (starCount !== 1) failures.push(`buildMap(${id}) should produce exactly one [*] marker, got ${starCount}.`);
 }
 
-const puzzleScenes = ['cloakbay', 'playground', 'tuckshop', 'musicroom', 'propRoom'];
+const puzzleScenes = ['cloakbay', 'playground', 'musicroom', 'propRoom'];
 for (const id of puzzleScenes) {
   if (!scenes[id]) failures.push(`Puzzle scene ${id} is missing.`);
 }
