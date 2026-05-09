@@ -117,7 +117,24 @@ export const ART = {
   |   9    |    3    |
   |    '--6--'       |
   |  felt fangs box  |
-  |__locked combo____|`
+  |__locked combo____|`,
+  vegegarden: String.raw`
+       VEGE GARDEN
+   ___________________
+  |  *  *  *  *  *   |
+  |  beetroot rows   |
+  |  rake  spade     |
+  |__chicken wire____|
+       3 watching gnomes`,
+  bikeshed: String.raw`
+        BIKE SHED
+   ___________________
+  | O-O  O-O  O-O   |
+  |  bike bike bike  |
+  |  bike bike       |
+  | OoO        OoO   |
+  |__trike    trike__|
+       red flicker?`
 };
 
 export const scenes = {
@@ -166,7 +183,8 @@ export const scenes = {
     choices: [
       { label: 'Borrow the torch and go to the toilets', to: 'toilets', add: 'torch', verbs: ['take torch', 'borrow torch', 'go toilets'] },
       { label: 'Check the office corridor map', to: 'corridor', add: 'hall note', verbs: ['go corridor', 'check map', 'read note'] },
-      { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] }
+      { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] },
+      { label: 'Visit Mr Webb\'s vegetable garden', to: 'vegegarden', verbs: ['go vege', 'vege garden', 'vegetable garden', 'talk webb'] }
     ]
   },
   courts: {
@@ -183,7 +201,8 @@ export const scenes = {
       { label: 'Follow the curtain cord to the hall', to: 'hall', add: 'glitter trail', verbs: ['follow cord', 'go hall'] },
       { label: 'Cut across to the quiet garden', to: 'garden', verbs: ['go garden'] },
       { label: 'Return to the toilets', to: 'toilets', verbs: ['go toilets'] },
-      { label: 'Peek at the playground hopscotch', to: 'playground', verbs: ['go playground', 'hopscotch', 'check hopscotch'] }
+      { label: 'Peek at the playground hopscotch', to: 'playground', verbs: ['go playground', 'hopscotch', 'check hopscotch'] },
+      { label: 'Walk past the bike shed', to: 'bikeshed', verbs: ['go bikeshed', 'go bike', 'bike shed', 'check bikes'] }
     ]
   },
   corridor: {
@@ -367,6 +386,40 @@ export const scenes = {
       { label: 'Dial 0215 (2:15)', feedback: 'Quarter past two would put the big hand on 3. Look at the bottom of the clock face — beyond the 6 is the 9.', verbs: ['215', '2:15', '0215', 'dial 215'] },
       { label: 'Slip back to the hall', to: 'hall', verbs: ['go hall', 'back', 'leave'] }
     ]
+  },
+  vegegarden: {
+    art: 'vegegarden',
+    caption: 'Tidy rows of beetroot and silverbeet. Three confused gnomes.',
+    title: 'The Vegetable Patch Mystery',
+    hint: 'Twelve beetroots, four nibbled by something with a sweet tooth. Share what is left between four classes.',
+    text: [
+      `${STAFF.craig} leans on his fork. "Twelve beetroots came up this week. Four already have neat little nibbles taken out of one side."`,
+      '"Whatever it is, it likes the sweet ones." He winks. "Four classes are sharing the un-nibbled beetroots for soup-making. How many does each class get?"',
+      'Three garden gnomes watch silently. Sam crouches at the chicken-wire fence and finds a tiny tuft of red fur caught on a wire.'
+    ],
+    choices: [
+      { label: 'Tell Mr Webb each class gets 2', to: 'office', add: 'red fur tuft', verbs: ['2', 'two', 'each gets two', 'tell two'] },
+      { label: 'Tell Mr Webb each class gets 3', feedback: 'Mr Webb shakes his head. "Twelve minus four leaves eight. Eight does not split into four threes — try again."', verbs: ['3', 'three', 'tell three'] },
+      { label: 'Tell Mr Webb each class gets 4', feedback: 'Mr Webb chuckles. "Four for each class is sixteen — more than we even grew. Try again."', verbs: ['4', 'four', 'tell four'] },
+      { label: 'Slip back to the office', to: 'office', verbs: ['go office', 'back', 'leave'] }
+    ]
+  },
+  bikeshed: {
+    art: 'bikeshed',
+    caption: 'Helmets, scooters, and one mysterious red flicker.',
+    title: 'Wheels Behind the Courts',
+    hint: 'Five bikes have two wheels each. Two trikes have three wheels each. Add them up.',
+    text: [
+      'The bike shed smells of rubber and dust. Five bikes lean in a tidy row, plus two trikes for the juniors.',
+      'Wilfred wants the wheel count for the safety check. Behind the back trike, something small and red flicks once and disappears between the spokes.',
+      '"How many wheels in total?" Wilfred asks, pencil ready.'
+    ],
+    choices: [
+      { label: 'Tell Wilfred 16 wheels', to: 'courts', add: 'red flicker', verbs: ['16', 'sixteen', 'tell sixteen'] },
+      { label: 'Tell Wilfred 14 wheels', feedback: 'Wilfred re-counts. "Five bikes is ten wheels, not eight. Try again."', verbs: ['14', 'fourteen', 'tell fourteen'] },
+      { label: 'Tell Wilfred 13 wheels', feedback: 'Wilfred shakes his head. "Two trikes have three wheels each — that is six, not three. Try again."', verbs: ['13', 'thirteen', 'tell thirteen'] },
+      { label: 'Walk back to the courts', to: 'courts', verbs: ['go courts', 'back', 'leave'] }
+    ]
   }
 };
 
@@ -384,12 +437,14 @@ export function buildMap(currentSceneId, visited = []) {
     ' |',
     ` +-- [${at('office')}] office`,
     ` |     +-- [${at('room10')}] Room 10`,
+    ` |     +-- [${at('vegegarden')}] vege garden (P)`,
     ` |     +-- [${at('corridor')}] corridor`,
     ` |           +-- [${at('library')}] library --- [${at('musicroom')}] music (P)`,
     ` |           +-- [${at('cloakbay')}] cloak bay (P)`,
     ' |',
     ` +-- [${at('courts')}] courts`,
     `       +-- [${at('playground')}] playground (P)`,
+    `       +-- [${at('bikeshed')}] bike shed (P)`,
     `       +-- [${at('hall')}] HALL --- [${at('ending')}] ending`,
     `              +-- [${at('propRoom')}] prop room (P)`
   ].join('\n');
@@ -819,7 +874,7 @@ function initGame() {
     writeMessage('Saved mystery loaded. Type RESTART for a new game.');
   } else {
     renderScene();
-    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — clues are hiding in the cloak bay, the playground, the music room, and the prop room too.');
+    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — there are clues in the cloak bay, the playground, the music room, the prop room, the vegetable garden, and the bike shed.');
   }
 }
 
