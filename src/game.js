@@ -103,13 +103,6 @@ export const ART = {
   |___|___|___|___|___|___|
         chalk hopscotch
    wet rain washed one off`,
-  tuckshop: String.raw`
-        TUCK SHOP
-   ___________________
-  |  $3   $3   $3    |
-  |  cookie tray     |
-  |  snack hatch     |
-  |__$12 in tin______|`,
   musicroom: String.raw`
         MUSIC ROOM
    ___________________
@@ -173,8 +166,7 @@ export const scenes = {
     choices: [
       { label: 'Borrow the torch and go to the toilets', to: 'toilets', add: 'torch', verbs: ['take torch', 'borrow torch', 'go toilets'] },
       { label: 'Check the office corridor map', to: 'corridor', add: 'hall note', verbs: ['go corridor', 'check map', 'read note'] },
-      { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] },
-      { label: 'Stop at the tuck shop window for snacks', to: 'tuckshop', verbs: ['go tuck', 'tuck shop', 'snacks', 'buy snacks'] }
+      { label: 'Ask Room 10 about Dragon Red paint', to: 'room10', verbs: ['go room 10', 'ask room 10', 'talk zoe'] }
     ]
   },
   courts: {
@@ -265,9 +257,9 @@ export const scenes = {
     title: 'Baxter and the Red Head',
     hint: 'Baxter has the monster head. Take it to the hall to finish the case.',
     text: [
-      'Baxter pops out with a giant papier-mâché monster head in his mouth. It is red, sparkly, and only a little chewed. Zoe and Ben call softly from the gate so he does not run through the school.',
-      'The missing children are crouched behind the logs with clipboards. They were helping with a secret assembly about solving rumours kindly.',
-      `${STAFF.craig} arrives with a bucket. He says the toilet noises were loose pipes, not a monster tummy.`
+      'Baxter pops out with a giant papier-mâché monster head in his mouth. It is red, sparkly, and only a little chewed. Behind him the flax leaves twitch — but only for a moment. Zoe and Ben call softly from the gate so Baxter does not run through the school.',
+      'The missing children are crouched behind the logs with clipboards. "We are looking after someone shy," one of them whispers. "The grown-ups know. You will see at assembly."',
+      `${STAFF.craig} arrives with a bucket. He grins. "The toilet noises are not what they sound like. You will see."`
     ],
     choices: [
       { label: 'Return the monster head to the hall', to: 'hall', add: 'monster head', verbs: ['take head', 'go hall', 'return head'] },
@@ -282,8 +274,8 @@ export const scenes = {
     hint: 'You need the monster head before you can SAY HELLO. Find Baxter in the garden.',
     text: [
       'The whole Mystery Club gathers: Henry, Casper, Guaranjot, Benji, Sam, Wilfred, Jessie, and Nina. They put every clue on the floor like detectives on TV.',
-      `${STAFF.michael}, ${STAFF.chrissy}, and ${STAFF.andrea} step from behind the curtain. They were not hiding a danger. They were preparing a surprise assembly about checking rumours before they grow teeth.`,
-      'But there is still one thump from backstage.'
+      `${STAFF.michael}, ${STAFF.chrissy}, and ${STAFF.andrea} step from behind the curtain. They smile. "We were preparing a surprise. There is someone shy who has lived at the school for ages, and we wanted everyone to meet her gently."`,
+      'A small thump comes from backstage. Then a tiny, musical hum.'
     ],
     choices: [
       { label: 'Say hello to whatever is backstage', to: 'ending', requires: ['monster head'], verbs: ['say hello', 'hello monster', 'go backstage'] },
@@ -299,8 +291,9 @@ export const scenes = {
     hint: 'You solved it! Try PLAY AGAIN, or peek in the BAG for your case file.',
     text: [
       'Henry says, “Hello?” Casper holds the torch steady. The curtain opens.',
-      'The Blood Monster is a wobbly red puppet for the school assembly. Baxter stole its head, the pipes made the groans, and the “blood” was washable paint mixed with beetroot juice for colour.',
-      'The club helps fix the puppet. At assembly, everyone learns the best monster-hunting tools: kindness, facts, and a snack in your pocket. CASE SOLVED.'
+      'There is the wobbly red puppet — the head Baxter borrowed, the props the staff prepared, the show meant to introduce her gently.',
+      'Behind the puppet, two bright eyes peek from a warm gap in the wall. The Blood Monster is real after all. She is about the size of a kitten, fuzzy and red, and very shy. Most of the red spatters are beetroot juice from her favourite garden snacks. The rest is washable paint from the puppet workshop. The pipe groans are her humming. The “missing children” had found her first and were quietly helping the staff plan a kind way to introduce her.',
+      'She shuffles out, looks at Baxter, looks at the Mystery Club, and gives a slow blink. The kids name her Beet. The best monster-hunting tools, everyone agrees: kindness, facts, and gentle hands. CASE SOLVED.'
     ],
     choices: [
       { label: 'Play again with different choices', to: 'start', reset: true, verbs: ['restart', 'play again'] },
@@ -339,23 +332,6 @@ export const scenes = {
       { label: 'Shout 7', feedback: 'The fort hatch stays shut. Nina whispers: "We are counting in twos, not ones."', verbs: ['7', 'seven', 'shout 7'] },
       { label: 'Shout 9', feedback: 'No click. Casper shrugs: "Nine is odd — the pattern only uses even numbers."', verbs: ['9', 'nine', 'shout 9'] },
       { label: 'Walk back to the courts', to: 'courts', verbs: ['go courts', 'back', 'leave'] }
-    ]
-  },
-  tuckshop: {
-    art: 'tuckshop',
-    caption: 'A foggy serving hatch and a row of price labels.',
-    title: 'The Tuck Shop Maths',
-    hint: 'Twelve dollars, three-dollar cookies, eight hungry detectives. Buy enough for everyone to share half.',
-    text: [
-      'Ben tips out the snack money: $12. Zoe points at the price label — Mystery Cookies are $3 each.',
-      'There are eight detectives in the club today. Everyone needs a fair share before the assembly bell.',
-      '"How many cookies should we buy so each of us gets exactly half a cookie?" Zoe asks.'
-    ],
-    choices: [
-      { label: 'Buy 4 cookies', to: 'office', add: 'shared cookies', verbs: ['4', 'four', 'buy 4', 'buy four'] },
-      { label: 'Buy 3 cookies', feedback: 'Six halves only feeds six. Two friends miss out. Try again.', verbs: ['3', 'three', 'buy 3'] },
-      { label: 'Buy 5 cookies', feedback: 'Five cookies cost $15 — that is more than the $12 in the tin. Try again.', verbs: ['5', 'five', 'buy 5'] },
-      { label: 'Skip snacks for now', to: 'office', verbs: ['skip', 'go office', 'back'] }
     ]
   },
   musicroom: {
@@ -408,7 +384,6 @@ export function buildMap(currentSceneId, visited = []) {
     ' |',
     ` +-- [${at('office')}] office`,
     ` |     +-- [${at('room10')}] Room 10`,
-    ` |     +-- [${at('tuckshop')}] tuck shop (P)`,
     ` |     +-- [${at('corridor')}] corridor`,
     ` |           +-- [${at('library')}] library --- [${at('musicroom')}] music (P)`,
     ` |           +-- [${at('cloakbay')}] cloak bay (P)`,
@@ -844,7 +819,7 @@ function initGame() {
     writeMessage('Saved mystery loaded. Type RESTART for a new game.');
   } else {
     renderScene();
-    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — clues are hiding in the cloak bay, the playground, the tuck shop, and the music room too.');
+    writeMessage('Welcome, detective! Tap a numbered choice or type one. Try MAP, HINT, JOKE, PAT BAXTER, or the READ ALOUD button. The school is bigger than it looks — clues are hiding in the cloak bay, the playground, the music room, and the prop room too.');
   }
 }
 
