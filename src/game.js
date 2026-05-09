@@ -585,6 +585,7 @@ function initGame() {
     captionEl.textContent = scene.caption;
     saveStatus.textContent = `TURN ${state.turns}`;
     storyLog.innerHTML = '';
+    storyLog.scrollTop = 0;
 
     pulse(artEl, 'art-pulse');
 
