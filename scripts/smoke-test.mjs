@@ -1,5 +1,5 @@
-import { readFile } from 'node:fs/promises';
-import { ART, SAVE_KEY, scenes, buildMap } from '../src/game.js';
+import { access, readFile } from 'node:fs/promises';
+import { ART, SCENE_IMAGES, SAVE_KEY, scenes, buildMap } from '../src/game.js';
 
 const [html, game, styles] = await Promise.all([
   readFile('index.html', 'utf8'),
@@ -76,6 +76,7 @@ for (const id of puzzleScenes) {
 
 for (const [sceneId, scene] of Object.entries(scenes)) {
   if (!ART[scene.art]) failures.push(`${sceneId} references missing art: ${scene.art}`);
+  if (!SCENE_IMAGES[sceneId]) failures.push(`${sceneId} is missing a scene image.`);
   if (!scene.title || !scene.caption || !scene.text?.length) failures.push(`${sceneId} is missing story text.`);
   if (!scene.choices?.length) failures.push(`${sceneId} has no choices.`);
   if (!scene.hint) failures.push(`${sceneId} is missing a kid-friendly HINT.`);
@@ -104,6 +105,14 @@ for (let index = 0; index < winningRoute.length - 1; index += 1) {
   const next = winningRoute[index + 1];
   if (!current.choices.some((choice) => choice.to === next)) {
     failures.push(`Winning route is broken between ${winningRoute[index]} and ${next}.`);
+  }
+}
+
+for (const [sceneId, imagePath] of Object.entries(SCENE_IMAGES)) {
+  try {
+    await access(imagePath);
+  } catch {
+    failures.push(`${sceneId} image file is missing: ${imagePath}`);
   }
 }
 

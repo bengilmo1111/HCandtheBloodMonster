@@ -161,6 +161,29 @@ export const ART = {
   |__pebble arc::::::_|`
 };
 
+export const SCENE_IMAGES = {
+  start: 'src/assets/scenes/start.png',
+  toilets: 'src/assets/scenes/toilets.png',
+  office: 'src/assets/scenes/office.png',
+  courts: 'src/assets/scenes/courts.png',
+  corridor: 'src/assets/scenes/corridor.png',
+  library: 'src/assets/scenes/library.png',
+  room10: 'src/assets/scenes/room10.png',
+  pipe: 'src/assets/scenes/pipe.png',
+  garden: 'src/assets/scenes/garden.png',
+  hall: 'src/assets/scenes/hall.png',
+  ending: 'src/assets/scenes/ending.png',
+  cloakbay: 'src/assets/scenes/cloakbay.png',
+  playground: 'src/assets/scenes/playground.png',
+  musicroom: 'src/assets/scenes/musicroom.png',
+  propRoom: 'src/assets/scenes/propRoom.png',
+  vegegarden: 'src/assets/scenes/vegegarden.png',
+  bikeshed: 'src/assets/scenes/bikeshed.png',
+  oldwing: 'src/assets/scenes/oldwing.png',
+  backstage: 'src/assets/scenes/backstage.png',
+  boiler: 'src/assets/scenes/boiler.png'
+};
+
 export const scenes = {
   start: {
     art: 'gate',
@@ -677,7 +700,8 @@ function initGame() {
     cancelSpeech();
 
     appEl.classList.toggle('is-playing', state.turns > 0);
-    artEl.textContent = ART[scene.art];
+    artEl.src = SCENE_IMAGES[state.sceneId];
+    artEl.alt = `${scene.title}. ${scene.caption}`;
     captionEl.textContent = scene.caption;
     saveStatus.textContent = `TURN ${state.turns}`;
     storyLog.innerHTML = '';
