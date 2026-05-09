@@ -82,12 +82,12 @@ export const ART = {
   |______________________|
        thump... thump...`,
   end: String.raw`
-        CASE SOLVED!
+        BEET
         \  |  /
-      --  \o/  --
-          /|\
+      -- [O.O] --
+          /|||
           / \
-   The monster waves hello.`,
+   ...what is deeper in?`,
   cloakbay: String.raw`
        CLOAK BAY
    ___________________
@@ -145,7 +145,7 @@ export const scenes = {
     hint: 'A good detective starts where the rumour started. The toilets are choice 1.',
     text: [
       'Henry Gilmore and Casper Gilmore stop at the Hutt Central School gate. Guaranjot, Benji, Sam, Wilfred, Jessie, and Nina crowd close.',
-      'Everyone has heard the same whisper: the Blood Monster lives near the toilets. There are red spatters on the concrete, strange noises at lunchtime, and two kids have not come back from their game.',
+      'Everyone has heard the same whisper: the Blood Monster lives near the toilets. There are red spatters on the concrete, deep rhythmic noises from inside the school walls at lunchtime, and two kids who went to play in the garden and have not been seen since.',
       'Ben and Zoe have packed snacks. Baxter the dog is waiting outside the fence with a wagging tail. This is a Mystery Club job.'
     ],
     choices: [
@@ -160,7 +160,7 @@ export const scenes = {
     title: 'The Red Spatters',
     hint: 'Paw prints lead somewhere quiet and green. Try FOLLOW PRINTS.',
     text: [
-      'The spatter is bright red, but it smells sweet, like beetroot and poster paint. Jessie writes that down. Sam hears a tiny clank behind a locked cleaning cupboard.',
+      'The spatter is bright red, and it smells sweetly of beetroot — but underneath that, something older and earthier. Jessie writes it down. From inside the wall, Sam hears a slow, rhythmic tap: three beats, a pause, three beats again.',
       `${STAFF.chrissy} appears with a folder. She says, “Please keep clear of wet paint, team.” Then she hurries away before anyone can ask about monsters. Very suspicious.`,
       'Casper spots three muddy paw prints. They are too small for a monster and exactly the right size for Baxter.'
     ],
@@ -261,8 +261,8 @@ export const scenes = {
     title: 'Voices in the Wall',
     hint: 'A happy bark just came from the garden. Race there.',
     text: [
-      'Henry presses his ear to the cool wall. A tiny voice says, “Is the surprise ready?” Another voice says, “Baxter stole the head!”',
-      'Casper gulps. A monster with a stolen head is not a calming thought.',
+      'Henry presses his ear to the wall. It is warm — warmer than a pipe should be. A voice says, “Is the surprise ready?” Another voice says, “Baxter stole the head!” Then a third sound, deeper still: not a voice, but a low rolling vibration that moves through the brickwork and into his teeth.',
+      'Casper gulps. A warm wall, a stolen head, and something that is not talking are three clues he would rather not have.',
       'Then everyone hears a happy bark from the quiet garden.'
     ],
     choices: [
@@ -276,9 +276,9 @@ export const scenes = {
     title: 'Baxter and the Red Head',
     hint: 'Baxter has the monster head. Take it to the hall to finish the case.',
     text: [
-      'Baxter pops out with a giant papier-mâché monster head in his mouth. It is red, sparkly, and only a little chewed. Behind him the flax leaves twitch — but only for a moment. Zoe and Ben call softly from the gate so Baxter does not run through the school.',
-      'The missing children are crouched behind the logs with clipboards. "We are looking after someone shy," one of them whispers. "The grown-ups know. You will see at assembly."',
-      `${STAFF.craig} arrives with a bucket. He grins. "The toilet noises are not what they sound like. You will see."`
+      'Baxter pops out with a giant papier-mâché monster head in his mouth. It is red, sparkly, and only a little chewed. Then the flax gives a violent shudder. Something dark red and low — bigger than any cat — shifts in the shadows behind the logs and vanishes before anyone can be certain they saw it.',
+      'The children who had been missing are crouched behind the logs with clipboards, calm and perfectly serious. "We are keeping him settled," one of them says quietly. "The grown-ups know. Please do not shout or make sudden movements."',
+      `${STAFF.craig} arrives carrying a covered crate carefully in both hands. "Nearly time," he says to no one in particular, moving slowly.`
     ],
     choices: [
       { label: 'Return the monster head to the hall', to: 'hall', add: 'monster head', verbs: ['take head', 'go hall', 'return head'] },
@@ -292,9 +292,9 @@ export const scenes = {
     title: 'Behind the Curtain',
     hint: 'You need the monster head before you can SAY HELLO. Find Baxter in the garden.',
     text: [
-      'The whole Mystery Club gathers: Henry, Casper, Guaranjot, Benji, Sam, Wilfred, Jessie, and Nina. They put every clue on the floor like detectives on TV.',
-      `${STAFF.michael}, ${STAFF.chrissy}, and ${STAFF.andrea} step from behind the curtain. They smile. "We were preparing a surprise. There is someone shy who has lived at the school for ages, and we wanted everyone to meet her gently."`,
-      'A small thump comes from backstage. Then a tiny, musical hum.'
+      'The whole Mystery Club gathers: Henry, Casper, Guaranjot, Benji, Sam, Wilfred, Jessie, and Nina. They spread every clue on the floor. The hall is dim. The stage curtains hang very still.',
+      `${STAFF.michael}, ${STAFF.chrissy}, and ${STAFF.andrea} step from behind the curtain. They are not quite smiling. "We were preparing an introduction," ${STAFF.michael} says carefully. "Someone has been living beneath this school for a long time. Longer than any of us have worked here. We wanted everyone to meet him on his terms."`,
+      'A thump from backstage shakes the floor. Then, slowly, a low hum that is almost a growl builds until the whole curtain trembles.'
     ],
     choices: [
       { label: 'Say hello to whatever is backstage', to: 'ending', requires: ['monster head'], verbs: ['say hello', 'hello monster', 'go backstage'] },
@@ -305,18 +305,21 @@ export const scenes = {
   },
   ending: {
     art: 'end',
-    caption: 'A friendly monster, a brave club, and one proud dog.',
+    caption: 'A real monster, a brave club — and something still waiting in the dark.',
     title: 'The Blood Monster Revealed',
     hint: 'You solved it! Try PLAY AGAIN, or peek in the BAG for your case file.',
     text: [
-      'Henry says, “Hello?” Casper holds the torch steady. The curtain opens.',
-      'There is the wobbly red puppet — the head Baxter borrowed, the props the staff prepared, the show meant to introduce her gently.',
-      'Behind the puppet, two bright eyes peek from a warm gap in the wall. The Blood Monster is real after all. She is about the size of a kitten, fuzzy and red, and very shy. Most of the red spatters are beetroot juice from her favourite garden snacks. The rest is washable paint from the puppet workshop. The pipe groans are her humming. The “missing children” had found her first and were quietly helping the staff plan a kind way to introduce her.',
-      'She shuffles out, looks at Baxter, looks at the Mystery Club, and gives a slow blink. The kids name her Beet. The best monster-hunting tools, everyone agrees: kindness, facts, and gentle hands. CASE SOLVED.'
+      'Henry says, “Hello?” in a voice much smaller than he intended. Casper holds the torch steady. The curtain opens.',
+      'Two amber eyes, low in the darkness, unblinking. A sound rises from inside the wall: not a hum, but a slow grinding growl that makes the stage floor shiver. Nobody moves.',
+      'Baxter walks into the torchlight, sits down, and wags his tail once. The growl stops. He steps out.',
+      'He is bigger than anyone expected — roughly Baxter\'s size — with dark red fur patterned in deeper shadow, small flat ears, and teeth like white needles that catch the light. He is not friendly, exactly. He is cautious. He sniffs the air. He looks at Baxter. Then he crosses to Henry and presses a cold dry nose to Henry\'s knuckles, and blinks slowly.',
+      'The red spatters are beetroot juice — his snacks from the garden. The pipe sounds are his humming. The washable paint is from the puppet workshop, where the staff built his stage-double so he would not have to face the whole school at once. The children who seemed missing had found him first and spent a week keeping him calm. The club names him Beet. CASE SOLVED.',
+      'Then Beet stops. He turns his head toward the gap at the back of the stage — the crack he came in through — and makes a short, flat sound that raises the hair on every arm in the hall. One of the children from the garden steps forward and holds out a folded sheet of paper. In pencil: scratch marks found on the pipe wall three nights ago. Too high to be Beet\'s. Too wide. “He has been watching that gap since Tuesday,” she says quietly. “Whatever made those marks came from deeper in.”'
     ],
     choices: [
       { label: 'Play again with different choices', to: 'start', reset: true, verbs: ['restart', 'play again'] },
-      { label: 'Review the notebook', command: 'bag', verbs: ['bag', 'notebook'] }
+      { label: 'Review the notebook', command: 'bag', verbs: ['bag', 'notebook'] },
+      { label: 'Look into the gap at the back of the stage', feedback: 'The gap is too dark and too narrow. Beet watches it with amber eyes, still and patient. This mystery has a name now — but the next one is already beginning.', verbs: ['look gap', 'check gap', 'go deeper', 'look deeper'] }
     ]
   },
   cloakbay: {
@@ -395,10 +398,10 @@ export const scenes = {
     text: [
       `${STAFF.craig} leans on his fork. "Twelve beetroots came up this week. Four already have neat little nibbles taken out of one side."`,
       '"Whatever it is, it likes the sweet ones." He winks. "Four classes are sharing the un-nibbled beetroots for soup-making. How many does each class get?"',
-      'Three garden gnomes watch silently. Sam crouches at the chicken-wire fence and finds a tiny tuft of red fur caught on a wire.'
+      'Three garden gnomes watch silently. Sam crouches at the chicken-wire fence and finds a clump of dark red fur snagged on the wire — far more than a tuft, and coarser than any animal she can name.'
     ],
     choices: [
-      { label: 'Tell Mr Webb each class gets 2', to: 'office', add: 'red fur tuft', verbs: ['2', 'two', 'each gets two', 'tell two'] },
+      { label: 'Tell Mr Webb each class gets 2', to: 'office', add: 'clump of dark red fur', verbs: ['2', 'two', 'each gets two', 'tell two'] },
       { label: 'Tell Mr Webb each class gets 3', feedback: 'Mr Webb shakes his head. "Twelve minus four leaves eight. Eight does not split into four threes — try again."', verbs: ['3', 'three', 'tell three'] },
       { label: 'Tell Mr Webb each class gets 4', feedback: 'Mr Webb chuckles. "Four for each class is sixteen — more than we even grew. Try again."', verbs: ['4', 'four', 'tell four'] },
       { label: 'Slip back to the office', to: 'office', verbs: ['go office', 'back', 'leave'] }
@@ -411,11 +414,11 @@ export const scenes = {
     hint: 'Five bikes have two wheels each. Two trikes have three wheels each. Add them up.',
     text: [
       'The bike shed smells of rubber and dust. Five bikes lean in a tidy row, plus two trikes for the juniors.',
-      'Wilfred wants the wheel count for the safety check. Behind the back trike, something small and red flicks once and disappears between the spokes.',
+      'Wilfred wants the wheel count for the safety check. Behind the back trike, something low and dark red — much bigger than a cat — moves fast and is gone between the wall and the spokes before anyone is sure they saw it.',
       '"How many wheels in total?" Wilfred asks, pencil ready.'
     ],
     choices: [
-      { label: 'Tell Wilfred 16 wheels', to: 'courts', add: 'red flicker', verbs: ['16', 'sixteen', 'tell sixteen'] },
+      { label: 'Tell Wilfred 16 wheels', to: 'courts', add: 'dark shape sighting', verbs: ['16', 'sixteen', 'tell sixteen'] },
       { label: 'Tell Wilfred 14 wheels', feedback: 'Wilfred re-counts. "Five bikes is ten wheels, not eight. Try again."', verbs: ['14', 'fourteen', 'tell fourteen'] },
       { label: 'Tell Wilfred 13 wheels', feedback: 'Wilfred shakes his head. "Two trikes have three wheels each — that is six, not three. Try again."', verbs: ['13', 'thirteen', 'tell thirteen'] },
       { label: 'Walk back to the courts', to: 'courts', verbs: ['go courts', 'back', 'leave'] }
@@ -492,11 +495,14 @@ export function getChoiceByCommand(scene, command) {
 
 function initGame() {
   const state = createInitialState();
+  const appEl = document.querySelector('#app');
   const storyLog = document.querySelector('#story-log');
   const choicesEl = document.querySelector('#choices');
   const artEl = document.querySelector('#scene-art');
   const captionEl = document.querySelector('#scene-caption');
   const inventoryEl = document.querySelector('#inventory-list');
+  const inventoryPanel = document.querySelector('.inventory-panel');
+  const notebookToggle = document.querySelector('#notebook-toggle');
   const form = document.querySelector('#command-form');
   const input = document.querySelector('#command-input');
   const saveStatus = document.querySelector('#save-status');
@@ -551,6 +557,18 @@ function initGame() {
     if (!readAloud) cancelSpeech();
   }
 
+  function setNotebookOpen(open) {
+    inventoryPanel.classList.toggle('is-open', open);
+    if (notebookToggle) {
+      notebookToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      notebookToggle.textContent = open ? 'MYSTERY CLUB NOTEBOOK ▲' : 'MYSTERY CLUB NOTEBOOK ▼';
+    }
+  }
+
+  notebookToggle?.addEventListener('click', () => {
+    setNotebookOpen(!inventoryPanel.classList.contains('is-open'));
+  });
+
   function addItem(item) {
     if (item && !state.inventory.includes(item)) {
       state.inventory.push(item);
@@ -581,6 +599,7 @@ function initGame() {
 
     cancelSpeech();
 
+    appEl.classList.toggle('is-playing', state.turns > 0);
     artEl.textContent = ART[scene.art];
     captionEl.textContent = scene.caption;
     saveStatus.textContent = `TURN ${state.turns}`;
@@ -638,6 +657,10 @@ function initGame() {
       if (item === newItem) li.classList.add('flash-update');
       inventoryEl.append(li);
     });
+    if (newItem) {
+      setNotebookOpen(true);
+      pulse(notebookToggle, 'flash-update');
+    }
   }
 
   function choose(index) {
@@ -769,6 +792,7 @@ function initGame() {
     }
 
     if (['bag', 'inventory', 'notebook'].includes(command)) {
+      setNotebookOpen(true);
       writeMessage(`Notebook: ${state.inventory.join(', ') || 'empty pockets, brave questions'}.`);
       return;
     }
