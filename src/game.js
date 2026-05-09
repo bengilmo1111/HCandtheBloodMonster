@@ -495,11 +495,14 @@ export function getChoiceByCommand(scene, command) {
 
 function initGame() {
   const state = createInitialState();
+  const appEl = document.querySelector('#app');
   const storyLog = document.querySelector('#story-log');
   const choicesEl = document.querySelector('#choices');
   const artEl = document.querySelector('#scene-art');
   const captionEl = document.querySelector('#scene-caption');
   const inventoryEl = document.querySelector('#inventory-list');
+  const inventoryPanel = document.querySelector('.inventory-panel');
+  const notebookToggle = document.querySelector('#notebook-toggle');
   const form = document.querySelector('#command-form');
   const input = document.querySelector('#command-input');
   const saveStatus = document.querySelector('#save-status');
@@ -554,6 +557,18 @@ function initGame() {
     if (!readAloud) cancelSpeech();
   }
 
+  function setNotebookOpen(open) {
+    inventoryPanel.classList.toggle('is-open', open);
+    if (notebookToggle) {
+      notebookToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      notebookToggle.textContent = open ? 'MYSTERY CLUB NOTEBOOK ▲' : 'MYSTERY CLUB NOTEBOOK ▼';
+    }
+  }
+
+  notebookToggle?.addEventListener('click', () => {
+    setNotebookOpen(!inventoryPanel.classList.contains('is-open'));
+  });
+
   function addItem(item) {
     if (item && !state.inventory.includes(item)) {
       state.inventory.push(item);
@@ -584,6 +599,7 @@ function initGame() {
 
     cancelSpeech();
 
+    appEl.classList.toggle('is-playing', state.turns > 0);
     artEl.textContent = ART[scene.art];
     captionEl.textContent = scene.caption;
     saveStatus.textContent = `TURN ${state.turns}`;
@@ -641,6 +657,10 @@ function initGame() {
       if (item === newItem) li.classList.add('flash-update');
       inventoryEl.append(li);
     });
+    if (newItem) {
+      setNotebookOpen(true);
+      pulse(notebookToggle, 'flash-update');
+    }
   }
 
   function choose(index) {
@@ -772,6 +792,7 @@ function initGame() {
     }
 
     if (['bag', 'inventory', 'notebook'].includes(command)) {
+      setNotebookOpen(true);
       writeMessage(`Notebook: ${state.inventory.join(', ') || 'empty pockets, brave questions'}.`);
       return;
     }

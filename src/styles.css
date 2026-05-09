@@ -235,7 +235,33 @@ button:disabled {
 
 .inventory-panel {
   margin-top: 1rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.notebook-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+  padding: 0.4rem 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.notebook-toggle:hover,
+.notebook-toggle:focus-visible {
+  background: transparent;
+  color: var(--ink);
+  outline: 2px solid var(--muted);
+  outline-offset: 2px;
 }
 
 .inventory-panel ul {
@@ -243,7 +269,7 @@ button:disabled {
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0;
-  margin: 0.75rem 0 0;
+  margin: 0.6rem 0 0.2rem;
   list-style: none;
 }
 
@@ -298,6 +324,30 @@ button:disabled {
   .inventory-panel {
     grid-area: inventory;
     margin-top: 0;
+    padding-block: 0.3rem;
+  }
+
+  /* Notebook collapsed by default at laptop widths */
+  .inventory-panel ul {
+    display: none;
+  }
+
+  .inventory-panel.is-open ul {
+    display: flex;
+  }
+
+  /* Header compacts after first player action */
+  .crt-shell.is-playing .kicker {
+    display: none;
+  }
+
+  .crt-shell.is-playing h1 {
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+  }
+
+  .crt-shell.is-playing .top-panel {
+    padding-block: 0.3rem;
   }
 
   .scene-art {
