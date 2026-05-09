@@ -26,23 +26,21 @@
         </div>
       </section>
 
-      <section class="screen-grid">
-        <figure class="picture-frame" aria-label="Current scene picture">
-          <pre id="scene-art" class="scene-art"></pre>
+      <section class="terminal scene-panel" aria-label="Current scene and story terminal">
+        <figure class="scene-picture" aria-label="Current scene picture">
+          <img id="scene-art" class="scene-art" alt="" width="320" height="200" decoding="async" />
           <figcaption id="scene-caption"></figcaption>
         </figure>
 
-        <section class="terminal" aria-label="Story terminal">
-          <div id="story-log" class="story-log"></div>
-          <form id="command-form" class="command-form" autocomplete="off">
-            <label for="command-input">Type a number, a command, or tap a choice. Try MAP or HINT if you get stuck.</label>
-            <div class="prompt-row">
-              <span aria-hidden="true">&gt;</span>
-              <input id="command-input" inputmode="text" placeholder="try: map, hint, go hall" />
-              <button type="submit">ENTER</button>
-            </div>
-          </form>
-        </section>
+        <div id="story-log" class="story-log"></div>
+        <form id="command-form" class="command-form" autocomplete="off">
+          <label for="command-input">Type a number, a command, or tap a choice. Try MAP or HINT if you get stuck.</label>
+          <div class="prompt-row">
+            <span aria-hidden="true">&gt;</span>
+            <input id="command-input" inputmode="text" placeholder="try: map, hint, go hall" />
+            <button type="submit">ENTER</button>
+          </div>
+        </form>
       </section>
 
       <nav id="choices" class="choices" aria-label="Choices"></nav>
