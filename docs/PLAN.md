@@ -22,7 +22,9 @@ Delivered:
   - `playground` — number patterns / skip-counting (2, 4, 6, ?, 10, 12 → 8).
   - `musicroom` — common multiples (LCM of 3 and 4 = 12).
   - `propRoom` — clock reading (big hand on 9 = 45 min past, small hand 2 → 3 = 2:45).
-  - A division/money puzzle previously lived in a `tuckshop` scene but the scene was removed (the real school has no tuck shop). If we want to restore the division slot, a snack-sharing setup at the office or quiet garden would work without inventing a building that does not exist.
+  - `vegegarden` (NEW) — subtraction then division ((12 − 4) ÷ 4 = 2). Off the office. Drops a "red fur tuft" clue foreshadowing Beet.
+  - `bikeshed` (NEW) — multiplication then addition / mixed ops (5 × 2 + 2 × 3 = 16). Off the senior courts. Drops a "red flicker" clue foreshadowing Beet.
+  - The earlier division/money slot lived in a `tuckshop` scene that was removed (the real school has no tuck shop). The new `vegegarden` puzzle is the canonical replacement for that slot.
 - Wrong-answer choices use a `feedback` field on the choice (no `to`) so the player stays in the puzzle scene and gets a gentle nudge from a club member rather than a "wrong" buzzer. Every puzzle scene also has a no-clue exit so kids can never get stuck.
 
 ### 2. Improve the parser feel

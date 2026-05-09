@@ -15,7 +15,7 @@ Hutt Central School details currently used in the game:
 - Values from the school site: respect, responsibility, resilience, and creativity.
 - Staff referenced from the school staff page (source data): Michael Gendall, Chrissy Laiman, Andrea Rogers, Penny Holotau, Jo Nash, Craig Webb, Andrea Sinclair, Kate Shirley, Julia Dal Vesco, and Zoe Thompson-Edgeler.
 - In-game presentation: only Mr Gendall and Mr Webb keep a surname (and the title is the only form used in dialogue). All other staff appear by first name only — Chrissy, Andrea, Jo, Penny, Kate, Julia, and Zoe — matching how kids actually address them at school. Roles (principal, deputy, etc.) are not stated in dialogue; the audience already knows the cast.
-- School areas used as scenes: gate, toilets, school office, office corridor, senior courts, library, quiet garden, Room 10, hall, cloak bay, playground, music room, and prop room. (There is no tuck shop at the real school; an earlier draft included one and has been removed.)
+- School areas used as scenes: gate, toilets, school office, office corridor, senior courts, library, quiet garden, Room 10, hall, cloak bay, playground, music room, prop room, vegetable garden (Mr Webb's beetroot patch), and bike shed. (There is no tuck shop at the real school; an earlier draft included one and has been removed.)
 
 ## Required characters
 - Henry Gilmore and Casper Gilmore as the main heroes.
@@ -54,7 +54,7 @@ Hutt Central School details currently used in the game:
 - `RESTART`
 
 ## Hidden curriculum (puzzle scenes)
-Four optional side scenes quietly drill primary-school maths skills while staying in-character. Players never see the words "maths" or "puzzle" — each one is framed as a detective decision.
+Six optional side scenes quietly drill primary-school maths skills while staying in-character. Players never see the words "maths" or "puzzle" — each one is framed as a detective decision.
 
 | Scene | Skill | Puzzle |
 | --- | --- | --- |
@@ -62,7 +62,9 @@ Four optional side scenes quietly drill primary-school maths skills while stayin
 | Playground | Number patterns / skip-counting | 2, 4, 6, ?, 10, 12 → 8 |
 | Music Room | Common multiples (LCM lite) | drum every 3, cymbal every 4 → meet on 12 |
 | Prop Room | Clock reading and fractions of an hour | big hand on 9 = 45 past; small hand 2 → 3 = 2:45 |
+| Vegetable Garden | Subtraction then division | (12 − 4) ÷ 4 = 2 beetroots per class |
+| Bike Shed | Multiplication then addition (mixed ops) | 5 × 2 + 2 × 3 = 16 wheels |
 
-A division/money puzzle previously lived in a tuck-shop scene; that scene was removed because the real school has no tuck shop. If we want to restore the division curriculum slot, a snack-sharing setup at the office or quiet garden would work.
+The vegetable-garden and bike-shed scenes also drop quiet foreshadowing clues about Beet (a tuft of red fur on the chicken wire, a red flicker behind a trike) — repeat plays let kids spot the trail before the ending.
 
 Wrong answers never end the game: each puzzle scene has a no-clue exit and feedback lines that nudge thinking ("we are counting in twos, not ones") rather than scolding. The main winning path bypasses the puzzles entirely so a younger or stuck player can still finish.
