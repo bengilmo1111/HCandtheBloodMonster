@@ -145,6 +145,7 @@ figcaption {
 
 .story-log {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding-right: 0.25rem;
 }
@@ -256,12 +257,15 @@ button:disabled {
   .crt-shell {
     display: grid;
     grid-template-columns: minmax(14rem, 0.55fr) minmax(20rem, 1.1fr) minmax(14rem, 0.55fr);
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
       "top       top       top"
       "picture   terminal  choices"
       "inventory inventory inventory";
     gap: 1rem;
-    align-content: start;
+    height: 100vh;
+    min-height: 0;
+    overflow-y: auto;
   }
 
   .screen-grid {
@@ -275,17 +279,20 @@ button:disabled {
 
   .picture-frame {
     grid-area: picture;
+    overflow: hidden;
   }
 
   .terminal {
     grid-area: terminal;
-    min-height: 18rem;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .choices {
     grid-area: choices;
     margin-top: 0;
     align-content: start;
+    overflow-y: auto;
   }
 
   .inventory-panel {
